@@ -1,7 +1,8 @@
 .card {
-  width: 300px;
+  width: 100%;
 }
 
 .profile-img {
   object-fit: contain;
+  width: 80%;
 }

@@ -8,7 +8,7 @@ const PetCard: React.FC<PetProps> = ({ adoptionStatus, name, id }) => {
   return (
     <div className="d-flex">
       <Card border="primary">
-        <Card.Img variant="top" src="./AppIcon.png" />
+        <Card.Img variant="top" src="/AppIcon.png" />
         <Card.Body>
           <Card.Title>{`${name}: ${adoptionStatus}`}</Card.Title>
         </Card.Body>

@@ -21,7 +21,7 @@ const PetProfile: React.FC = () => {
 
   return (
     <div className="d-flex">
-      <img className="profile-img" src="./AppIcon.png" alt="petImg" />
+      <img className="profile-img" src="/AppIcon.png" alt="petImg" />
       <Card>
         <Card.Body>
           <Card.Title>{`${name}`}</Card.Title>
