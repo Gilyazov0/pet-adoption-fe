@@ -5,15 +5,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import PetCard from "./Components/PetCard";
 import PetCardsList from "./Components/PetCardsList";
 import PetProps from "./Types/PetProps";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Components/Home";
 
 function App() {
-  const pets = Pets.map((pet, i) => {
-    return { ...pet, id: i.toString() };
-  }) as PetProps[];
-
   return (
     <div className="App">
-      <PetCardsList pets={pets} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile/:id" element={<PetProfile />} />
+      </Routes>
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import PetProps from "../Types/PetProps";
 import "../style/PetProfile.css";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const PetCard: React.FC<PetProps> = ({ adoptionStatus, name }) => {
+const PetCard: React.FC<PetProps> = ({ adoptionStatus, name, id }) => {
+  console.log(id);
   return (
     <div className="d-flex">
       <Card border="primary">
@@ -12,7 +14,7 @@ const PetCard: React.FC<PetProps> = ({ adoptionStatus, name }) => {
         </Card.Body>
 
         <Card.Body>
-          <Card.Link href="#">See more</Card.Link>
+          <Link to={`/profile/${id}`}>See more</Link>
         </Card.Body>
       </Card>
     </div>

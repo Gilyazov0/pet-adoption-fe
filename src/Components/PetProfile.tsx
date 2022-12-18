@@ -1,20 +1,24 @@
-import PetProps from "../Types/PetProps";
 import "../style/PetProfile.css";
 import { Card, ListGroup } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { getPetById } from "../lib/api";
 
-const PetProfile: React.FC<PetProps> = ({
-  adoptionStatus,
-  bio,
-  breed,
-  color,
-  dietary,
-  height,
-  hypoallergnic,
-  name,
-  picture,
-  type,
-  weight,
-}) => {
+const PetProfile: React.FC = () => {
+  const { id } = useParams();
+  const {
+    adoptionStatus,
+    bio,
+    breed,
+    color,
+    dietary,
+    height,
+    hypoallergnic,
+    name,
+    picture,
+    type,
+    weight,
+  } = getPetById(id!);
+
   return (
     <div className="d-flex">
       <img className="profile-img" src="./AppIcon.png" alt="petImg" />
