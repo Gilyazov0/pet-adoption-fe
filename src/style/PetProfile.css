@@ -1,0 +1,7 @@
+.card {
+  width: 300px;
+}
+
+.profile-img {
+  object-fit: contain;
+}
