@@ -6,7 +6,6 @@ const Search: React.FC = () => {
   const pets = getPets();
   return (
     <>
-      <SearchBar />
       <PetCardsList pets={pets} />;
     </>
   );

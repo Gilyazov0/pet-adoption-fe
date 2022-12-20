@@ -13,7 +13,7 @@ const Login: React.FC = () => {
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
 
-      <Button className="btn-custom " type="submit">
+      <Button className="btn-custom" type="submit">
         Submit
       </Button>
     </Form>

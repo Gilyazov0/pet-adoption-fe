@@ -2,13 +2,13 @@ import PetProps from "../Types/PetProps";
 import "../style/PetProfile.css";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AdoptStatus } from "../Types/AdoptStatus";
 
 const PetCard: React.FC<PetProps> = ({ adoptionStatus, name, id }) => {
-  console.log(id);
   const colorClass =
-    adoptionStatus === "Adopted"
+    adoptionStatus === AdoptStatus.Adopted
       ? "text-success"
-      : adoptionStatus === "Fostered"
+      : adoptionStatus === AdoptStatus.Fostered
       ? "text-warning"
       : "text-danger";
   return (

@@ -1,4 +1,3 @@
-import PetProps from "./Types/PetProps";
 export const Pets = [
   {
     type: "Dog",

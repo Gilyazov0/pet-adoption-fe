@@ -40,9 +40,9 @@ a:hover {
 }
 
 .btn-custom:hover {
-  background-color: #ddc5a2;
-  border-color: #ddc5a2;
-  color: #301b28;
+  background-color: #301b28;
+  border-color: #301b28;
+  color: #b6452c;
 }
 
 .btn-custom:active {

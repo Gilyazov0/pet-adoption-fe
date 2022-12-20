@@ -10,7 +10,7 @@ const SearchBarModal: React.FC<Props> = ({ showSearch, setShowSearch }) => {
   return (
     <Modal show={showSearch} onHide={() => setShowSearch(false)} centered>
       <Modal.Body className=" ">
-        <SearchBar />
+        <SearchBar setShowSearch={setShowSearch} />
       </Modal.Body>
     </Modal>
   );

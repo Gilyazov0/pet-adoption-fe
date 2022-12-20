@@ -2,6 +2,7 @@ import "../style/PetProfile.css";
 import { Card, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getPetById } from "../lib/api";
+import { AdoptStatus } from "../Types/AdoptStatus";
 
 const PetProfile: React.FC = () => {
   const { id } = useParams();
@@ -20,9 +21,9 @@ const PetProfile: React.FC = () => {
   } = getPetById(id!);
 
   const colorClass =
-    adoptionStatus === "Adopted"
+    adoptionStatus === AdoptStatus.Adopted
       ? "text-success"
-      : adoptionStatus === "Fostered"
+      : adoptionStatus === AdoptStatus.Fostered
       ? "text-warning"
       : "text-danger";
 

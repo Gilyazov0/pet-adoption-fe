@@ -1,11 +1,10 @@
-export type PestTypes = "Dog" | "Cat" | "Other";
-
-export type AdoptionStatus = "Adopted" | "Available" | "Fostered";
+import { AdoptStatus } from "./AdoptStatus";
+import { PetType } from "./PetsTypes";
 
 export default interface PetProps {
-  type: PestTypes;
+  type: PetType;
   name: string;
-  adoptionStatus: AdoptionStatus;
+  adoptionStatus: AdoptStatus;
   picture: "";
   height: number;
   weight: number;
