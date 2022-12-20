@@ -14,5 +14,8 @@
   color: #b6452c;
   font-size: 2rem;
   margin: 0 1rem;
-  font-family: "Hanalei Fill", cursive;
+}
+
+.no-underline {
+  text-decoration: none;
 }

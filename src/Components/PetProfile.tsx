@@ -19,6 +19,13 @@ const PetProfile: React.FC = () => {
     weight,
   } = getPetById(id!);
 
+  const colorClass =
+    adoptionStatus === "Adopted"
+      ? "text-success"
+      : adoptionStatus === "Fostered"
+      ? "text-warning"
+      : "text-danger";
+
   return (
     <div className="pet-profile">
       <img className="profile-img" src="/AppIcon2.jpg" alt="petImg" />
@@ -35,7 +42,10 @@ const PetProfile: React.FC = () => {
           <ListGroup.Item>{`Weight: ${weight} kg`}</ListGroup.Item>
           <ListGroup.Item>{`Hypoallergnic: ${hypoallergnic}`}</ListGroup.Item>
           <ListGroup.Item>{`Dietary: ${dietary}`}</ListGroup.Item>
-          <ListGroup.Item>{`Adoption status: ${adoptionStatus}`}</ListGroup.Item>
+          <ListGroup.Item>
+            {"Adoption status: "}
+            <span className={`${colorClass}`}>{`${adoptionStatus}`}</span>
+          </ListGroup.Item>
         </ListGroup>
         <Card.Body>
           <Card.Link href="#">Save</Card.Link>

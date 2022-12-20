@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Badge, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/NavBar.css";
 import Auth from "./Auth";
 
@@ -9,11 +9,13 @@ const NavBar: React.FC = () => {
   const navigate = useNavigate();
   return (
     <div className="nav-bar">
-      <div className="label">Pet adoption</div>
+      <Link to={"/"} className={"no-underline"}>
+        <div className="label">Pet adoption</div>
+      </Link>
 
-      <Button className="m-3 btn-custom" onClick={() => navigate("Search")}>
-        Search for a friend
-      </Button>
+      <Link to={"/Search"} className={"no-underline"}>
+        <div className="label">Search for a friend</div>
+      </Link>
       <Button
         className="m-3 btn-custom "
         onClick={() => setShow((prev) => !prev)}
