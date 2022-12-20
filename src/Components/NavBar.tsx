@@ -1,28 +1,29 @@
 import { useState } from "react";
-import { Badge, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "../style/NavBar.css";
 import Auth from "./Auth";
+import SearchBarModal from "./SearchBarModal";
 
 const NavBar: React.FC = () => {
-  const [show, setShow] = useState<boolean>(false);
-  const navigate = useNavigate();
+  const [showAuth, setShowAuth] = useState<boolean>(false);
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+
   return (
     <div className="nav-bar">
       <Link to={"/"} className={"no-underline"}>
         <div className="label">Pet adoption</div>
       </Link>
 
-      <Link to={"/Search"} className={"no-underline"}>
-        <div className="label">Search for a friend</div>
-      </Link>
-      <Button
-        className="m-3 btn-custom "
-        onClick={() => setShow((prev) => !prev)}
-      >
+      <div className="label" onClick={() => setShowSearch(true)}>
+        Search for a friend
+      </div>
+
+      <Button className="m-3 btn-custom " onClick={() => setShowAuth(true)}>
         Login/SignUp
       </Button>
-      <Auth setShow={setShow} show={show} />
+      <Auth setShowAuth={setShowAuth} showAuth={showAuth} />
+      <SearchBarModal showSearch={showSearch} setShowSearch={setShowSearch} />
     </div>
   );
 };

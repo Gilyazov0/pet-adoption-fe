@@ -5,14 +5,14 @@ import SignUp from "./SignUp";
 import { Link } from "react-router-dom";
 
 interface Props {
-  show: boolean;
-  setShow: Function;
+  showAuth: boolean;
+  setShowAuth: Function;
 }
 
-const Auth: React.FC<Props> = ({ show, setShow }) => {
+const Auth: React.FC<Props> = ({ showAuth, setShowAuth }) => {
   const [form, setForm] = useState<"Login" | "SignUp">("Login");
   return (
-    <Modal show={show} onHide={() => setShow(false)} centered>
+    <Modal show={showAuth} onHide={() => setShowAuth(false)} centered>
       <Modal.Body className="d-flex flex-row-reverse">
         <Link
           to={""}

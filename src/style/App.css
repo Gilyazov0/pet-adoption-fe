@@ -11,6 +11,20 @@ body {
   border-radius: 0.5rem;
 }
 
+.accordion-item {
+  background-color: #ddc5a2;
+  border-color: #ddc5a2;
+}
+.accordion-button {
+  background-color: #ddc5a2;
+  border-color: #ddc5a2;
+  padding: 0;
+}
+input {
+  background-color: #ddc5a2;
+  border-color: #ddc5a2;
+}
+
 a {
   color: #b6452c;
 }
