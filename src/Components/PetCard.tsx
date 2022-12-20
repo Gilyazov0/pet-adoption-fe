@@ -17,7 +17,7 @@ const PetCard: React.FC<PetProps> = ({ adoptionStatus, name, id }) => {
         <Card.Img variant="top" className="card-img" src="/AppIcon2.jpg" />
         <Card.Body>
           <Card.Title>
-            {`${name}:`}
+            {`${name}: `}
             <span className={`${colorClass}`}>{`${adoptionStatus}`}</span>
           </Card.Title>
         </Card.Body>
