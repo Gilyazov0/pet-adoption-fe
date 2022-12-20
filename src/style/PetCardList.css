@@ -4,3 +4,11 @@
   justify-content: space-around;
   gap: 20px;
 }
+.card-img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.card {
+  border-color: #301b28;
+}

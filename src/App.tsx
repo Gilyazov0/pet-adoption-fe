@@ -1,18 +1,18 @@
-import { useState } from "react";
 import PetProfile from "./Components/PetProfile";
-import { Pets } from "./PetsDataSet";
 import "bootstrap/dist/css/bootstrap.min.css";
-import PetCard from "./Components/PetCard";
-import PetCardsList from "./Components/PetCardsList";
-import PetProps from "./Types/PetProps";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Components/Home";
+import NavBar from "./Components/NavBar";
+import "./style/App.css";
+import Search from "./Components/Search";
 
 function App() {
   return (
     <div className="App">
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/profile/:id" element={<PetProfile />} />
       </Routes>
     </div>

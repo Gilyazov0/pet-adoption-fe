@@ -1,0 +1,38 @@
+body {
+  padding-top: 80px;
+  background-color: #ddc5a2;
+  font-family: "Kaushan Script", cursive;
+  color: #301b28;
+}
+
+.modal-content {
+  background-color: #ddc5a2;
+  border-color: #ddc5a2;
+  border-radius: 0.5rem;
+}
+
+a {
+  color: #b6452c;
+}
+
+a:hover {
+  color: #301b28;
+}
+
+.btn-custom {
+  background-color: #b6452c;
+  border-color: #b6452c;
+  color: #301b28;
+}
+
+.btn-custom:hover {
+  background-color: #ddc5a2;
+  border-color: #ddc5a2;
+  color: #301b28;
+}
+
+.btn-custom:active {
+  background-color: #ddc5a2 !important;
+  border-color: #ddc5a2 !important;
+  color: #301b28 !important;
+}

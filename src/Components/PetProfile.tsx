@@ -20,8 +20,8 @@ const PetProfile: React.FC = () => {
   } = getPetById(id!);
 
   return (
-    <div className="d-flex">
-      <img className="profile-img" src="/AppIcon.png" alt="petImg" />
+    <div className="pet-profile">
+      <img className="profile-img" src="/AppIcon2.jpg" alt="petImg" />
       <Card>
         <Card.Body>
           <Card.Title>{`${name}`}</Card.Title>

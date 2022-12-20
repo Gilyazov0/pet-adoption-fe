@@ -8,3 +8,7 @@ const pets = Pets.map((pet, i) => {
 export function getPetById(id: string): PetProps {
   return pets[Number(id)];
 }
+
+export function getPets() {
+  return pets;
+}

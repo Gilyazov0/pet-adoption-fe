@@ -5,12 +5,21 @@ import { Link } from "react-router-dom";
 
 const PetCard: React.FC<PetProps> = ({ adoptionStatus, name, id }) => {
   console.log(id);
+  const colorClass =
+    adoptionStatus === "Adopted"
+      ? "text-success"
+      : adoptionStatus === "Fostered"
+      ? "text-warning"
+      : "text-danger";
   return (
     <div className="d-flex">
-      <Card border="primary">
-        <Card.Img variant="top" src="/AppIcon.png" />
+      <Card>
+        <Card.Img variant="top" className="card-img" src="/AppIcon2.jpg" />
         <Card.Body>
-          <Card.Title>{`${name}: ${adoptionStatus}`}</Card.Title>
+          <Card.Title>
+            {`${name}:`}{" "}
+            <span className={`${colorClass}`}>{`${adoptionStatus}`}</span>
+          </Card.Title>
         </Card.Body>
 
         <Card.Body>
