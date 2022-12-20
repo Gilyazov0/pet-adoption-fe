@@ -61,5 +61,4 @@ const PetProfile: React.FC = () => {
     </div>
   );
 };
-
 export default PetProfile;

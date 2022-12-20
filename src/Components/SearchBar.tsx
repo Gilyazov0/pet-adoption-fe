@@ -12,7 +12,7 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
 
   const type = useRef<HTMLSelectElement>(null);
   const status = useRef<HTMLSelectElement>(null);
-  const hight = useRef<HTMLInputElement>(null);
+  const height = useRef<HTMLInputElement>(null);
   const weight = useRef<HTMLInputElement>(null);
   const name = useRef<HTMLInputElement>(null);
 
@@ -20,7 +20,7 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
     let query = "?";
     if (type.current!.value) query += `type=${type.current!.value}&&`;
     if (status.current!.value) query += `status=${status.current!.value}&&`;
-    if (hight.current!.value) query += `hight=${hight.current!.value}&&`;
+    if (height.current!.value) query += `hight=${height.current!.value}&&`;
     if (weight.current!.value) query += `weight=${weight.current!.value}&&`;
     if (name.current!.value) query += `name=${name.current!.value}&&`;
 
@@ -32,8 +32,9 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
     if (!query) return;
     setShowSearch(false);
 
-    navigate(`/Search/${query}`);
+    navigate(`/Search${query}`);
   }
+
   return (
     <>
       <div className="label">Search for a friend</div>
@@ -79,7 +80,7 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
               <span className="align-self-center me-3 search-label">
                 Height:
               </span>
-              <Form.Control type="number" ref={hight} />
+              <Form.Control type="number" ref={height} />
             </div>
             <div className="d-flex mb-2">
               <span className="align-self-center me-3 search-label">

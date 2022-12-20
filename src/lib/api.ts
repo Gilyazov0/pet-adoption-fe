@@ -25,6 +25,23 @@ export function getPetById(id: string): PetProps {
   return pets[Number(id)];
 }
 
+export function search(
+  name: string,
+  type: string,
+  weight: string,
+  height: string,
+  status: string
+) {
+  return pets.filter((x) => {
+    if (name && x.name != name) return false;
+    if (type && PetType[x.type] != type) return false;
+    if (weight && x.weight !== Number(weight)) return false;
+    if (height && x.height !== Number(height)) return false;
+    if (status && AdoptStatus[x.adoptionStatus] != status) return false;
+    return true;
+  });
+}
+
 export function getPets() {
   return pets;
 }
