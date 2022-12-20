@@ -18,7 +18,9 @@ const PetCard: React.FC<PetProps> = ({ adoptionStatus, name, id }) => {
         <Card.Body>
           <Card.Title>
             {`${name}: `}
-            <span className={`${colorClass}`}>{`${adoptionStatus}`}</span>
+            <span
+              className={`${colorClass}`}
+            >{`${AdoptStatus[adoptionStatus]}`}</span>
           </Card.Title>
         </Card.Body>
 

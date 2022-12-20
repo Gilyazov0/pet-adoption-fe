@@ -3,6 +3,7 @@ import { Card, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getPetById } from "../lib/api";
 import { AdoptStatus } from "../Types/AdoptStatus";
+import { PetType } from "../Types/PetsTypes";
 
 const PetProfile: React.FC = () => {
   const { id } = useParams();
@@ -36,7 +37,7 @@ const PetProfile: React.FC = () => {
           <Card.Text>{`${bio}`}</Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroup.Item>{`Type: ${type}`}</ListGroup.Item>
+          <ListGroup.Item>{`Type: ${PetType[type]}`}</ListGroup.Item>
           <ListGroup.Item>{`Breed: ${breed}`}</ListGroup.Item>
           <ListGroup.Item>{`Color: ${color}`}</ListGroup.Item>
           <ListGroup.Item>{`Height: ${height} cm`}</ListGroup.Item>
@@ -47,7 +48,9 @@ const PetProfile: React.FC = () => {
           <ListGroup.Item>{`Dietary: ${dietary}`}</ListGroup.Item>
           <ListGroup.Item>
             {"Adoption status: "}
-            <span className={`${colorClass}`}>{`${adoptionStatus}`}</span>
+            <span
+              className={`${colorClass}`}
+            >{`${AdoptStatus[adoptionStatus]}`}</span>
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>
