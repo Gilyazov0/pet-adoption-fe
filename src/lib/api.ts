@@ -25,7 +25,7 @@ export function getPetById(id: string): PetProps {
   return pets[Number(id)];
 }
 
-export function search(
+export async function search(
   name: string,
   type: string,
   weight: string,

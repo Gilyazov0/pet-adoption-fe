@@ -1,7 +1,7 @@
 import { Accordion, Button, Form } from "react-bootstrap";
 import "../style/SearchBar.css";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { PetType } from "../Types/PetsTypes";
 import { AdoptStatus } from "../Types/AdoptStatus";
 
@@ -10,19 +10,36 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
 }) => {
   const navigate = useNavigate();
 
-  const type = useRef<HTMLSelectElement>(null);
-  const status = useRef<HTMLSelectElement>(null);
-  const height = useRef<HTMLInputElement>(null);
-  const weight = useRef<HTMLInputElement>(null);
-  const name = useRef<HTMLInputElement>(null);
+  interface SearchParams {
+    name: string;
+    type: string;
+    weight: string;
+    height: string;
+    status: string;
+  }
+
+  const [searchParams, setSearchParams] = useState<SearchParams>({
+    name: "",
+    type: "",
+    weight: "",
+    height: "",
+    status: "",
+  });
+
+  function handleInput(
+    e: React.ChangeEvent & { target: { name: string; value: string } }
+  ) {
+    setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
+    console.log(searchParams);
+  }
 
   function getQuery() {
     let query = "?";
-    if (type.current!.value) query += `type=${type.current!.value}&&`;
-    if (status.current!.value) query += `status=${status.current!.value}&&`;
-    if (height.current!.value) query += `hight=${height.current!.value}&&`;
-    if (weight.current!.value) query += `weight=${weight.current!.value}&&`;
-    if (name.current!.value) query += `name=${name.current!.value}&&`;
+    if (searchParams.type) query += `type=${searchParams.type}&&`;
+    if (searchParams.status) query += `status=${searchParams.status}&&`;
+    if (searchParams.height) query += `hight=${searchParams.height}&&`;
+    if (searchParams.weight) query += `weight=${searchParams.weight}&&`;
+    if (searchParams.name) query += `name=${searchParams.name}&&`;
 
     return query.length > 1 ? query.slice(0, query.length - 2) : "";
   }
@@ -48,7 +65,11 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
               }}
               className="d-flex w-100"
             >
-              <Form.Select className="me-3 w-100" ref={type}>
+              <Form.Select
+                className="me-3 w-100"
+                name="type"
+                onChange={(e) => handleInput(e)}
+              >
                 <option value={""}>Select animal type</option>
                 <option value={PetType[PetType.Dog]}>Dog</option>
                 <option value={PetType[PetType.Cat]}>Cat</option>
@@ -57,7 +78,11 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
             </div>
           </Accordion.Header>
           <Accordion.Body>
-            <Form.Select className="mb-2" ref={status}>
+            <Form.Select
+              className="mb-2"
+              name="status"
+              onChange={(e) => handleInput(e)}
+            >
               <option value={""}>Select adoption status</option>
               <option value={AdoptStatus[AdoptStatus.Adopted]}>Adopted</option>
               <option value={AdoptStatus[AdoptStatus.Available]}>
@@ -68,25 +93,32 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
               </option>
             </Form.Select>
             <div className="d-flex mb-2">
-              <span
-                className="align-self-center me-3 search-label"
-                ref={weight}
-              >
-                Name:
-              </span>
-              <Form.Control type="text" ref={name} />
+              <span className="align-self-center me-3 search-label">Name:</span>
+              <Form.Control
+                type="text"
+                name="name"
+                onChange={(e) => handleInput(e)}
+              />
             </div>
             <div className="d-flex  mb-2">
               <span className="align-self-center me-3 search-label">
                 Height:
               </span>
-              <Form.Control type="number" ref={height} />
+              <Form.Control
+                type="number"
+                name="height"
+                onChange={(e) => handleInput(e)}
+              />
             </div>
             <div className="d-flex mb-2">
               <span className="align-self-center me-3 search-label">
                 Width:
               </span>
-              <Form.Control type="number" ref={weight} />
+              <Form.Control
+                type="number"
+                name="weight"
+                onChange={(e) => handleInput(e)}
+              />
             </div>
           </Accordion.Body>
         </Accordion.Item>

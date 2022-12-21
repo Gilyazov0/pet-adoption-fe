@@ -14,8 +14,12 @@ const Search: React.FC = () => {
   ]);
 
   useEffect(() => {
-    const newPets = search(name, type, weight, height, status);
-    setPets(newPets);
+    async function getSearchResults() {
+      const newPets = await search(name, type, weight, height, status);
+      setPets(newPets);
+    }
+
+    getSearchResults();
   }, [searchParams]);
   return <>{pets ? <PetCardsList pets={pets} /> : <Loading />};</>;
 };
