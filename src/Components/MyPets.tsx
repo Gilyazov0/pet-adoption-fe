@@ -5,7 +5,7 @@ import { getPetsByIds } from "../lib/petsApi";
 import PetProps from "../Types/PetProps";
 import "../style/MyPets.css";
 import User from "../Types/User";
-import PetCardsList from "./PetCardsList";
+import PetCardsList from "./PetsList/PetsList";
 const MyPets: React.FC = () => {
   const user = useContext(UserContext).user as User;
   const [view, setView] = useState<"myPets" | "savedPets">("myPets");

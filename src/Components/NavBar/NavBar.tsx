@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import "../style/NavBar.css";
-import Auth from "./Auth";
+import "../../style/NavBar.css";
+import Auth from "../Auth/Auth";
 import SearchBarModal from "./SearchBarModal";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 
 const NavBar: React.FC = () => {
   const { user, setUser } = useContext(UserContext);

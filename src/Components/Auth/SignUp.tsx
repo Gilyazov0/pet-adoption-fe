@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { UserContext } from "../App";
-import { createUser } from "../lib/userApi";
+import { UserContext } from "../../App";
+import { createUser } from "../../lib/userApi";
 import Error from "./Error";
 
 interface Props {

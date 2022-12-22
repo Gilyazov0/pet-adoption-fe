@@ -1,7 +1,7 @@
 import { Accordion, Button, Form } from "react-bootstrap";
 import "../style/SearchBar.css";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { PetType } from "../Types/PetsTypes";
 import { AdoptStatus } from "../Types/AdoptStatus";
 

@@ -1,8 +1,8 @@
-import PetProps from "../Types/PetProps";
-import "../style/PetProfile.css";
+import PetProps from "../../Types/PetProps";
+import "../../style/PetProfile.css";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { AdoptStatus } from "../Types/AdoptStatus";
+import { AdoptStatus } from "../../Types/AdoptStatus";
 
 const PetCard: React.FC<PetProps> = ({ adoptionStatus, name, id }) => {
   const colorClass =

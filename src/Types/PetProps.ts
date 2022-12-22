@@ -14,4 +14,6 @@ export default interface PetProps {
   dietary: string[];
   breed: string;
   id: string;
+  adoptedBy?: string;
+  fosteredBy?: string;
 }

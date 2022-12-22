@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { getPetById } from "../lib/petsApi";
 import { AdoptStatus } from "../Types/AdoptStatus";
 import { PetType } from "../Types/PetsTypes";
+import { useContext } from "react";
+import { UserContext } from "../App";
 
 const PetProfile: React.FC = () => {
   const { id } = useParams();
@@ -21,6 +23,7 @@ const PetProfile: React.FC = () => {
     weight,
   } = getPetById(id!);
 
+  const { user } = useContext(UserContext);
   const colorClass =
     adoptionStatus === AdoptStatus.Adopted
       ? "text-success"
@@ -54,8 +57,8 @@ const PetProfile: React.FC = () => {
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>
-          <Card.Link href="#">Save</Card.Link>
-          <Card.Link href="#">Adopt</Card.Link>
+          <Card.Link>Save</Card.Link>
+          <Card.Link>Adopt</Card.Link>
         </Card.Body>
       </Card>
     </div>

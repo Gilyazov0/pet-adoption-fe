@@ -1,6 +1,6 @@
-import PetProps from "../Types/PetProps";
+import PetProps from "../../Types/PetProps";
 import PetCard from "./PetCard";
-import "../style/PetCardList.css";
+import "../../style/PetCardList.css";
 
 const PetCardsList: React.FC<{ pets: PetProps[] }> = ({ pets }) => {
   return (
