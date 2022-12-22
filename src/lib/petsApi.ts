@@ -42,6 +42,10 @@ export async function search(
   });
 }
 
+export async function getPetsByIds(ids: string[]) {
+  return ids.map((id) => getPetById(id));
+}
+
 export function getPets() {
   return pets;
 }

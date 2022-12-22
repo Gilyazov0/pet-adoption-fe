@@ -8,6 +8,7 @@ import Search from "./Components/Search";
 import { createContext, useState } from "react";
 import User from "./Types/User";
 import useUserChange from "./Hooks/useUserChange";
+import MyPets from "./Components/MyPets";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/myPets" element={<MyPets />} />
           <Route path="/profile/:id" element={<PetProfile />} />
         </Routes>
       </UserContext.Provider>

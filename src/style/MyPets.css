@@ -1,0 +1,15 @@
+.form-check-input {
+  background-color: #b6452c;
+  border-color: #301b28;
+  background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27><circle r=%273%27 fill=%27%23666%27/></svg>") !important;
+}
+.form-check-input:checked {
+  background-color: #b6452c;
+  border-color: #301b28;
+}
+
+.form-check-input:focus {
+  border-color: #301b28 !important;
+  outline: 0;
+  box-shadow: none !important;
+}

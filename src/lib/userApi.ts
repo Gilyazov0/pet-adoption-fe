@@ -34,8 +34,8 @@ export async function login(
       lastName: "Bob",
       id: "someId",
       phone: "",
-      myPets: [],
-      savedPets: [],
+      myPets: ["1", "40"],
+      savedPets: ["2"],
       isAdmin: false,
     },
   };

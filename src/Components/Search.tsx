@@ -1,5 +1,5 @@
 import PetCardsList from "./PetCardsList";
-import { search } from "../lib/prtsApi";
+import { search } from "../lib/petsApi";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import PetProps from "../Types/PetProps";
