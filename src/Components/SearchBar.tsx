@@ -10,15 +10,7 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
 }) => {
   const navigate = useNavigate();
 
-  interface SearchParams {
-    name: string;
-    type: string;
-    weight: string;
-    height: string;
-    status: string;
-  }
-
-  const [searchParams, setSearchParams] = useState<SearchParams>({
+  const [searchParams, setSearchParams] = useState({
     name: "",
     type: "",
     weight: "",
@@ -30,7 +22,6 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
     e: React.ChangeEvent & { target: { name: string; value: string } }
   ) {
     setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
-    console.log(searchParams);
   }
 
   function getQuery() {

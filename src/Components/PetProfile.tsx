@@ -1,7 +1,7 @@
 import "../style/PetProfile.css";
 import { Card, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { getPetById } from "../lib/api";
+import { getPetById } from "../lib/prtsApi";
 import { AdoptStatus } from "../Types/AdoptStatus";
 import { PetType } from "../Types/PetsTypes";
 
