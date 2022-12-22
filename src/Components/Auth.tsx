@@ -24,7 +24,11 @@ const Auth: React.FC<Props> = ({ showAuth, setShowAuth }) => {
         </Link>
       </Modal.Body>
       <Modal.Body>
-        {form === "Login" ? <Login /> : <SignUp setShowAuth={setShowAuth} />}
+        {form === "Login" ? (
+          <Login setShowAuth={setShowAuth} />
+        ) : (
+          <SignUp setShowAuth={setShowAuth} />
+        )}
       </Modal.Body>
     </Modal>
   );
