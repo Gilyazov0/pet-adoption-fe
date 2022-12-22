@@ -4,4 +4,7 @@ export default interface User {
   phone: string;
   firstName: string;
   lastName: string;
+  isAdmin: boolean;
+  myPets: string[];
+  savedPets: string[];
 }
