@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 interface Props {
   showAuth: boolean;
-  setShowAuth: Function;
+  setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Auth: React.FC<Props> = ({ showAuth, setShowAuth }) => {
@@ -23,7 +23,9 @@ const Auth: React.FC<Props> = ({ showAuth, setShowAuth }) => {
           {form === "Login" ? "Sign up" : "Login"}
         </Link>
       </Modal.Body>
-      <Modal.Body>{form === "Login" ? <Login /> : <SignUp />}</Modal.Body>
+      <Modal.Body>
+        {form === "Login" ? <Login /> : <SignUp setShowAuth={setShowAuth} />}
+      </Modal.Body>
     </Modal>
   );
 };

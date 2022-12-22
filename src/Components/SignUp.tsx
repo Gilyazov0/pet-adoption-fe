@@ -4,7 +4,11 @@ import { UserContext } from "../App";
 import { createUser } from "../lib/userApi";
 import Error from "./Error";
 
-const SignUp: React.FC = () => {
+interface Props {
+  setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SignUp: React.FC<Props> = ({ setShowAuth }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -51,6 +55,7 @@ const SignUp: React.FC = () => {
     }
 
     setUser(response.user!);
+    setShowAuth(false);
   }
 
   return (

@@ -7,6 +7,7 @@ import "./style/App.css";
 import Search from "./Components/Search";
 import { createContext, useState } from "react";
 import User from "./Types/User";
+import useUserChange from "./Hooks/useUserChange";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -18,6 +19,7 @@ export const UserContext = createContext<{
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
+  useUserChange();
 
   return (
     <div className="App">
