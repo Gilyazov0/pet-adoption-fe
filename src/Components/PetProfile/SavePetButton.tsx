@@ -6,7 +6,6 @@ import PetProps from "../../Types/Pet";
 
 const SavePetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
   const { user, setUser } = useContext(UserContext);
-
   const label = user?.savedPets.includes(pet.id) ? "Unsave" : "Save";
 
   return (
@@ -15,9 +14,9 @@ const SavePetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
         <Button
           className="m-3 btn-custom"
           onClick={async () => {
-            const newUser = await toggleSave(user.id, pet.id);
-            console.log(newUser.savedPets);
-            setUser(newUser);
+            const res = await toggleSave(user.id, pet.id);
+            if (res.user) setUser(res.user);
+            else console.log(res.error);
           }}
         >
           {label}

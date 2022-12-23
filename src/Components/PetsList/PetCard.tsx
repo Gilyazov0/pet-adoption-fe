@@ -6,9 +6,9 @@ import { AdoptStatus } from "../../Types/AdoptStatus";
 
 const PetCard: React.FC<Pet> = ({ adoptionStatus, name, id }) => {
   const colorClass =
-    adoptionStatus === AdoptStatus.Adopted
+    adoptionStatus === "Adopted"
       ? "text-success"
-      : adoptionStatus === AdoptStatus.Fostered
+      : adoptionStatus === "Fostered"
       ? "text-warning"
       : "text-danger";
   return (
@@ -18,9 +18,7 @@ const PetCard: React.FC<Pet> = ({ adoptionStatus, name, id }) => {
         <Card.Body>
           <Card.Title>
             {`${name}: `}
-            <span
-              className={`${colorClass}`}
-            >{`${AdoptStatus[adoptionStatus]}`}</span>
+            <span className={`${colorClass}`}>{`${adoptionStatus}`}</span>
           </Card.Title>
         </Card.Body>
 

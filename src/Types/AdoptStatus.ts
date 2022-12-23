@@ -1,5 +1,1 @@
-export enum AdoptStatus {
-  "Adopted",
-  "Available",
-  "Fostered",
-}
+export type AdoptStatus = "Adopted" | "Available" | "Fostered";

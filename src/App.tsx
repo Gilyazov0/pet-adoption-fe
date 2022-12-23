@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Components/Home";
 import NavBar from "./Components/NavBar/NavBar";
 import "./style/App.css";
-import Search from "./Components/NavBar/SearchResults";
+import Search from "./Components/SearchResults";
 import { createContext, useState } from "react";
 import User from "./Types/User";
 import useUserChange from "./Hooks/useUserChange";

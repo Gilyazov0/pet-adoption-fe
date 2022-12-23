@@ -14,7 +14,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
   );
 
   const [error, setError] = useState("");
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
@@ -25,6 +25,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
   async function handleSubmit() {
     const response = await login(formData.email, formData.password);
     if (response.error) {
+      setError(response.error);
     }
     if (response.user) {
       setUser(response.user);

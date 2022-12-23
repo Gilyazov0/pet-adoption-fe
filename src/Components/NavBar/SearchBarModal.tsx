@@ -1,5 +1,5 @@
 import { Modal } from "react-bootstrap";
-import SearchBar from "../SearchBar";
+import SearchBar from "./SearchBar";
 
 interface Props {
   showSearch: boolean;

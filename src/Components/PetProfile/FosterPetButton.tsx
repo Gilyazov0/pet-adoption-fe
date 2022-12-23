@@ -3,18 +3,17 @@ import { Button } from "react-bootstrap";
 import { UserContext } from "../../App";
 import { toggleFoster } from "../../lib/userApi";
 import PetProps from "../../Types/Pet";
-import { AdoptStatus } from "../../Types/AdoptStatus";
 
 const FosterPetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
   const { user, setUser } = useContext(UserContext);
 
   const getLabel = () => {
     switch (pet.adoptionStatus) {
-      case AdoptStatus.Adopted:
+      case "Adopted":
         return "";
-      case AdoptStatus.Fostered:
+      case "Fostered":
         return pet.fosteredBy === user?.id ? "Return" : "";
-      case AdoptStatus.Available:
+      case "Available":
         return "Foster";
     }
   };
@@ -27,8 +26,9 @@ const FosterPetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
         <Button
           className="m-3 btn-custom"
           onClick={async () => {
-            const newUser = await toggleFoster(user.id, pet.id);
-            setUser(newUser);
+            const res = await toggleFoster(user.id, pet.id);
+            if (res.user) setUser(res.user);
+            else console.log(res.error);
           }}
         >
           {label}

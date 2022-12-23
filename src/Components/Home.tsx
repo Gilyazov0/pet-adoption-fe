@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../App";
 function Home() {
   const { user } = useContext(UserContext);
+
   return (
     <div className="App">
       <div className="home">

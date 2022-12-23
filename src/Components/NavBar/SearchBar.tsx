@@ -1,9 +1,8 @@
 import { Accordion, Button, Form } from "react-bootstrap";
-import "../style/SearchBar.css";
+import "../../style/SearchBar.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { PetType } from "../Types/PetsTypes";
-import { AdoptStatus } from "../Types/AdoptStatus";
+import { PetType } from "../../Types/PetsTypes";
 
 const SearchBar: React.FC<{ setShowSearch: Function }> = ({
   setShowSearch,
@@ -75,13 +74,9 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
               onChange={(e) => handleInput(e)}
             >
               <option value={""}>Select adoption status</option>
-              <option value={AdoptStatus[AdoptStatus.Adopted]}>Adopted</option>
-              <option value={AdoptStatus[AdoptStatus.Available]}>
-                Available
-              </option>
-              <option value={AdoptStatus[AdoptStatus.Fostered]}>
-                Fostered
-              </option>
+              <option value={"Adopted"}>Adopted</option>
+              <option value={"Available"}>Available</option>
+              <option value={"Fostered"}>Fostered</option>
             </Form.Select>
             <div className="d-flex mb-2">
               <span className="align-self-center me-3 search-label">Name:</span>

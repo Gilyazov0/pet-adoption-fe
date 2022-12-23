@@ -1,9 +1,9 @@
-import PetCardsList from "../PetsList/PetsList";
-import { search } from "../../lib/petsApi";
+import PetCardsList from "./PetsList/PetsList";
+import { search } from "../lib/petsApi";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import Pet from "../../Types/Pet";
-import Loading from "../CommonComponents/Loading";
+import Pet from "../Types/Pet";
+import Loading from "./CommonComponents/Loading";
 
 const Search: React.FC = () => {
   const [pets, setPets] = useState<Pet[] | undefined>(undefined);
@@ -21,7 +21,7 @@ const Search: React.FC = () => {
 
     getSearchResults();
   }, [searchParams]);
-  return <>{pets ? <PetCardsList pets={pets} /> : <Loading />};</>;
+  return <>{pets ? <PetCardsList pets={pets} /> : <Loading />}</>;
 };
 
 export default Search;
