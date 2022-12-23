@@ -2,11 +2,11 @@ import PetCardsList from "../PetsList/PetsList";
 import { search } from "../../lib/petsApi";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import PetProps from "../../Types/PetProps";
+import Pet from "../../Types/Pet";
 import Loading from "../CommonComponents/Loading";
 
 const Search: React.FC = () => {
-  const [pets, setPets] = useState<PetProps[] | undefined>(undefined);
+  const [pets, setPets] = useState<Pet[] | undefined>(undefined);
   let [searchParams] = useSearchParams();
 
   const { name, type, weight, height, status } = Object.fromEntries([

@@ -1,5 +1,5 @@
 import { Pets } from "../PetsDataSet";
-import PetProps from "../Types/PetProps";
+import Pet from "../Types/Pet";
 import { PetType } from "../Types/PetsTypes";
 import { AdoptStatus } from "../Types/AdoptStatus";
 
@@ -19,9 +19,9 @@ const pets = Pets.map((pet, i) => {
       : AdoptStatus.Available;
 
   return { ...pet, id: i.toString(), type, adoptionStatus: status };
-}) as PetProps[];
+}) as Pet[];
 
-export function getPetById(id: string): PetProps {
+export function getPetById(id: string): Pet {
   return pets[Number(id)];
 }
 

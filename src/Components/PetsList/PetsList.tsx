@@ -1,8 +1,8 @@
-import PetProps from "../../Types/PetProps";
+import Pet from "../../Types/Pet";
 import PetCard from "./PetCard";
 import "../../style/PetCardList.css";
 
-const PetCardsList: React.FC<{ pets: PetProps[] }> = ({ pets }) => {
+const PetCardsList: React.FC<{ pets: Pet[] }> = ({ pets }) => {
   return (
     <div className="cards-container">
       {pets.map((pet, i) => (

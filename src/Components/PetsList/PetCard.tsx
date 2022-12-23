@@ -1,10 +1,10 @@
-import PetProps from "../../Types/PetProps";
+import Pet from "../../Types/Pet";
 import "../../style/PetProfile.css";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AdoptStatus } from "../../Types/AdoptStatus";
 
-const PetCard: React.FC<PetProps> = ({ adoptionStatus, name, id }) => {
+const PetCard: React.FC<Pet> = ({ adoptionStatus, name, id }) => {
   const colorClass =
     adoptionStatus === AdoptStatus.Adopted
       ? "text-success"

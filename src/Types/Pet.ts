@@ -1,7 +1,7 @@
 import { AdoptStatus } from "./AdoptStatus";
 import { PetType } from "./PetsTypes";
 
-export default interface PetProps {
+export default interface Pet {
   type: PetType;
   name: string;
   adoptionStatus: AdoptStatus;

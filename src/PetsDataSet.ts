@@ -24,6 +24,7 @@ export const Pets = [
     hypoallergnic: true,
     dietary: [],
     breed: "Domestic Shorthair Mix",
+    adoptedBy: "someId",
   },
   {
     type: "Cat",

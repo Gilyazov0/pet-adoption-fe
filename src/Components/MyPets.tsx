@@ -2,14 +2,14 @@ import { useContext, useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { UserContext } from "../App";
 import { getPetsByIds } from "../lib/petsApi";
-import PetProps from "../Types/PetProps";
+import Pet from "../Types/Pet";
 import "../style/MyPets.css";
 import User from "../Types/User";
 import PetCardsList from "./PetsList/PetsList";
 const MyPets: React.FC = () => {
   const user = useContext(UserContext).user as User;
   const [view, setView] = useState<"myPets" | "savedPets">("myPets");
-  const [pets, setPets] = useState<PetProps[]>([]);
+  const [pets, setPets] = useState<Pet[]>([]);
 
   useEffect(() => {
     async function getPets() {
@@ -18,7 +18,7 @@ const MyPets: React.FC = () => {
       setPets(newPets);
     }
     getPets();
-  }, [view]);
+  }, [user, view]);
 
   return (
     <>

@@ -1,14 +1,18 @@
-import "../style/PetProfile.css";
+import "../../style/PetProfile.css";
 import { Card, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { getPetById } from "../lib/petsApi";
-import { AdoptStatus } from "../Types/AdoptStatus";
-import { PetType } from "../Types/PetsTypes";
+import { getPetById } from "../../lib/petsApi";
+import { AdoptStatus } from "../../Types/AdoptStatus";
+import { PetType } from "../../Types/PetsTypes";
 import { useContext } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
+import SavePetButton from "./SavePetButton";
+import AdoptPetButton from "./AdoptPetButton";
+import FosterPetButton from "./FosterPetButton";
 
 const PetProfile: React.FC = () => {
   const { id } = useParams();
+  const pet = getPetById(id!);
   const {
     adoptionStatus,
     bio,
@@ -21,7 +25,7 @@ const PetProfile: React.FC = () => {
     picture,
     type,
     weight,
-  } = getPetById(id!);
+  } = pet;
 
   const { user } = useContext(UserContext);
   const colorClass =
@@ -30,7 +34,10 @@ const PetProfile: React.FC = () => {
       : adoptionStatus === AdoptStatus.Fostered
       ? "text-warning"
       : "text-danger";
-
+  const yourPet =
+    user && (pet.adoptedBy === user.id || pet.fosteredBy === user.id)
+      ? true
+      : false;
   return (
     <div className="pet-profile">
       <img className="profile-img" src="/AppIcon2.jpg" alt="petImg" />
@@ -51,14 +58,15 @@ const PetProfile: React.FC = () => {
           <ListGroup.Item>{`Dietary: ${dietary}`}</ListGroup.Item>
           <ListGroup.Item>
             {"Adoption status: "}
-            <span
-              className={`${colorClass}`}
-            >{`${AdoptStatus[adoptionStatus]}`}</span>
+            <span className={`${colorClass}`}>{`${
+              AdoptStatus[adoptionStatus]
+            } ${yourPet ? "by you" : ""}`}</span>
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>
-          <Card.Link>Save</Card.Link>
-          <Card.Link>Adopt</Card.Link>
+          <SavePetButton pet={pet} />
+          <AdoptPetButton pet={pet} />
+          <FosterPetButton pet={pet} />
         </Card.Body>
       </Card>
     </div>
