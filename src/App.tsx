@@ -10,6 +10,7 @@ import User from "./Types/User";
 import useUserChange from "./Hooks/useUserChange";
 import MyPets from "./Components/MyPets";
 import UserProfile from "./Components/UserProfile";
+import AddPet from "./Components/AddPet";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -31,6 +32,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/addPet" element={<AddPet />} />
           <Route path="/myPets" element={<MyPets />} />
           <Route path="/profile/:id" element={<PetProfile />} />
         </Routes>

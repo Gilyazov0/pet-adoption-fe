@@ -33,6 +33,11 @@ const NavBar: React.FC = () => {
           <div className="label">Profile</div>
         </Link>
       )}
+      {user && (
+        <Link to={"/addPet"} className={"no-underline"}>
+          <div className="label">Add pet</div>
+        </Link>
+      )}
 
       {user ? (
         <Button className="m-3 btn-custom " onClick={() => setUser(null)}>

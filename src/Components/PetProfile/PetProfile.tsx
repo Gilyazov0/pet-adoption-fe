@@ -31,7 +31,7 @@ const PetProfile: React.FC = () => {
       : pet?.adoptionStatus === "Fostered"
       ? "text-warning"
       : "text-danger";
-  console.log(pet);
+
   const yourPet =
     user && pet && (pet.adoptedBy === user.id || pet.fosteredBy === user.id)
       ? true
