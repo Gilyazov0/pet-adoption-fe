@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { UserContext } from "../../App";
 import { login } from "../../lib/userApi";
 import Error from "../CommonComponents/Error";
@@ -34,8 +34,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
   }
   return (
     <Form>
-      <Form.Group className="mb-3">
-        <Form.Label>Email address</Form.Label>
+      <FloatingLabel label="Email address" className="mb-3">
         <Form.Control
           type="email"
           placeholder="Enter email"
@@ -43,10 +42,9 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
           onChange={(e) => handleInput(e)}
           value={formData.email}
         />
-      </Form.Group>
+      </FloatingLabel>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Password</Form.Label>
+      <FloatingLabel label="Password" className="mb-3">
         <Form.Control
           type="password"
           placeholder="Password"
@@ -54,7 +52,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
           onChange={(e) => handleInput(e)}
           value={formData.password}
         />
-      </Form.Group>
+      </FloatingLabel>
 
       <Button className="btn-custom" onClick={() => handleSubmit()}>
         Submit
