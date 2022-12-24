@@ -5,6 +5,7 @@ import User from "../Types/User";
 import Error from "./CommonComponents/Error";
 import "../style/UserProfile.css";
 import passwordValidation from "../lib/passwordValidation";
+import { updateUser } from "../lib/userApi";
 
 interface FormData {
   email: string;
@@ -16,7 +17,7 @@ interface FormData {
 }
 
 const UserProfile: React.FC = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState<FormData>({
     email: user!.email,
@@ -26,7 +27,7 @@ const UserProfile: React.FC = () => {
     bio: user!.bio,
     password: "",
   });
-  const { email, firstName, lastName, phone, bio } = user as User;
+  const { email, firstName, lastName, phone, bio, password } = formData;
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
@@ -34,12 +35,28 @@ const UserProfile: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (formData.password) {
-      const error = passwordValidation(formData.password);
+      const error = passwordValidation(password);
       setError(error);
     }
+
+    const response = await updateUser(
+      email,
+      firstName,
+      lastName,
+      phone,
+      bio,
+      password ? password : undefined
+    );
+
+    if (response.error) {
+      setError(response.error);
+      return;
+    }
+
+    setUser(response.user!);
   }
 
   return (
