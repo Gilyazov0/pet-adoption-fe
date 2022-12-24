@@ -4,6 +4,7 @@ import { UserContext } from "../App";
 import User from "../Types/User";
 import Error from "./CommonComponents/Error";
 import "../style/UserProfile.css";
+import passwordValidation from "../lib/passwordValidation";
 
 interface FormData {
   email: string;
@@ -31,6 +32,14 @@ const UserProfile: React.FC = () => {
     e: React.ChangeEvent & { target: { name: string; value: string } }
   ) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    if (formData.password) {
+      const error = passwordValidation(formData.password);
+      setError(error);
+    }
   }
 
   return (
@@ -96,11 +105,17 @@ const UserProfile: React.FC = () => {
             name="bio"
             as="textarea"
             placeholder="Biography"
+            value={bio}
             onChange={(e) => handleInput(e)}
           />
         </FloatingLabel>
 
-        <Button className="btn-custom me-3" type="submit" onClick={(e) => {}}>
+        <Button
+          className="btn-custom me-3"
+          onClick={(e) => {
+            handleSubmit(e);
+          }}
+        >
           Submit
         </Button>
         <Error error={error} />

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../App";
+import passwordValidation from "../../lib/passwordValidation";
 import { createUser } from "../../lib/userApi";
 import Error from "../CommonComponents/Error";
 
@@ -27,15 +28,9 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  function passwordError(pw1: string, pw2: string) {
-    if (pw1 !== pw2) return "passwords do not match";
-    if (pw1.length < 6) return "password length less than 6";
-    return "";
-  }
-
   async function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
-    const error = passwordError(formData.password1, formData.password2);
+    const error = passwordValidation(formData.password1, formData.password2);
 
     if (error) {
       setError(error);
