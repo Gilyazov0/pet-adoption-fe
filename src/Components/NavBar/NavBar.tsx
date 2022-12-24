@@ -27,6 +27,13 @@ const NavBar: React.FC = () => {
           My pets
         </Button>
       )}
+
+      {user && (
+        <Link to={"/userProfile"} className={"no-underline"}>
+          <div className="label">Profile</div>
+        </Link>
+      )}
+
       {user ? (
         <Button className="m-3 btn-custom " onClick={() => setUser(null)}>
           Logout

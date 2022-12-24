@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../App";
 import { login } from "../../lib/userApi";
-import Error from "./Error";
+import Error from "../CommonComponents/Error";
 
 interface Props {
   setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;

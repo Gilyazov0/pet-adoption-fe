@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../App";
 import { createUser } from "../../lib/userApi";
-import Error from "./Error";
+import Error from "../CommonComponents/Error";
 
 interface Props {
   setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,7 +19,7 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
   });
 
   const [error, setError] = useState("");
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
