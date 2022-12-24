@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { UserContext } from "../../App";
 import passwordValidation from "../../lib/passwordValidation";
 import { createUser } from "../../lib/userApi";
@@ -55,8 +55,7 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
 
   return (
     <Form>
-      <Form.Group className="mb-3">
-        <Form.Label>First name</Form.Label>
+      <FloatingLabel label="First name" className="mb-3">
         <Form.Control
           required
           type="text"
@@ -64,10 +63,9 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
           placeholder="First name"
           onChange={(e) => handleInput(e)}
         />
-      </Form.Group>
+      </FloatingLabel>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Last name</Form.Label>
+      <FloatingLabel label="Last name" className="mb-3">
         <Form.Control
           required
           name="lastName"
@@ -75,10 +73,9 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
           placeholder="Last name"
           onChange={(e) => handleInput(e)}
         />
-      </Form.Group>
+      </FloatingLabel>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Email address</Form.Label>
+      <FloatingLabel label="Email address" className="mb-3">
         <Form.Control
           required
           name="email"
@@ -86,10 +83,9 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
           placeholder="Enter email"
           onChange={(e) => handleInput(e)}
         />
-      </Form.Group>
+      </FloatingLabel>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Phone number</Form.Label>
+      <FloatingLabel label="Phone number" className="mb-3">
         <Form.Control
           type="tel"
           name="phone"
@@ -97,10 +93,9 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
           placeholder="Phone number"
           onChange={(e) => handleInput(e)}
         />
-      </Form.Group>
+      </FloatingLabel>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Password</Form.Label>
+      <FloatingLabel label="Password" className="mb-3">
         <Form.Control
           required
           name="password1"
@@ -108,10 +103,9 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
           placeholder="Password"
           onChange={(e) => handleInput(e)}
         />
-      </Form.Group>
+      </FloatingLabel>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Password</Form.Label>
+      <FloatingLabel label="Password" className="mb-3">
         <Form.Control
           required
           name="password2"
@@ -119,7 +113,7 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
           placeholder="Password"
           onChange={(e) => handleInput(e)}
         />
-      </Form.Group>
+      </FloatingLabel>
 
       <Button
         className="btn-custom me-3"
