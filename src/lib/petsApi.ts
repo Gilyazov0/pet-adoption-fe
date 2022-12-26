@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import Pet from "../Types/Pet";
 
 const BASE_URL = "http://localhost:8080/pet";
 
@@ -24,6 +25,20 @@ export async function search(
   }
 }
 
+export async function addPet(
+  data: Omit<Pet, "id" | "picture" | "adoptionStatus">
+) {
+  console.log(data);
+  try {
+    const response = await axios.post<Pet>(`${BASE_URL}/addPet`, data);
+    return { pet: response.data };
+  } catch (err) {
+    if (err instanceof AxiosError || err instanceof Error)
+      return { error: err.message };
+    else return { error: "unknown error" };
+  }
+}
+
 export async function getPetsByIds(ids: string[]) {
   try {
     const params = { ids };
@@ -34,50 +49,3 @@ export async function getPetsByIds(ids: string[]) {
     console.log(err);
   }
 }
-
-// const pets = Pets.map((pet, i) => {
-//   const type =
-//     pet.type === "Dog"
-//       ? PetType.Dog
-//       : pet.type === "Cat"
-//       ? PetType.Cat
-//       : PetType.Other;
-
-//   const status =
-//     pet.adoptionStatus === "Adopted"
-//       ? AdoptStatus.Adopted
-//       : pet.adoptionStatus === "Fostered"
-//       ? AdoptStatus.Fostered
-//       : AdoptStatus.Available;
-
-//   return { ...pet, id: i.toString(), type, adoptionStatus: status };
-// }) as Pet[];
-
-// export function getPetById(id: string): Pet {
-//   return pets[Number(id)];
-// }
-
-// export async function search(
-//   name: string,
-//   type: string,
-//   weight: string,
-//   height: string,
-//   status: string
-// ) {
-//   return pets.filter((x) => {
-//     if (name && x.name != name) return false;
-//     if (type && PetType[x.type] != type) return false;
-//     if (weight && x.weight !== Number(weight)) return false;
-//     if (height && x.height !== Number(height)) return false;
-//     if (status && AdoptStatus[x.adoptionStatus] != status) return false;
-//     return true;
-//   });
-// }
-
-// export async function getPetsByIds(ids: string[]) {
-//   return ids.map((id) => getPetById(id));
-// }
-
-// export function getPets() {
-//   return pets;
-// }

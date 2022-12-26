@@ -3,7 +3,7 @@ import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { UserContext } from "../../App";
 import passwordValidation from "../../lib/passwordValidation";
 import { createUser } from "../../lib/userApi";
-import Error from "../CommonComponents/Error";
+import Message, { MessageType } from "../CommonComponents/Message";
 
 interface Props {
   setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,7 +19,8 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
     password2: "",
   });
 
-  const [error, setError] = useState("");
+  const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
+
   const { setUser } = useContext(UserContext);
 
   function handleInput(
@@ -33,7 +34,7 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
     const error = passwordValidation(formData.password1, formData.password2);
 
     if (error) {
-      setError(error);
+      setMsg({ text: error, type: "error" });
       return;
     }
     const response = await createUser(
@@ -45,7 +46,7 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
     );
 
     if (response.error) {
-      setError(response.error);
+      setMsg({ text: response.error, type: "error" });
       return;
     }
 
@@ -122,7 +123,7 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
       >
         Submit
       </Button>
-      <Error error={error} />
+      <Message {...msg} />
     </Form>
   );
 };

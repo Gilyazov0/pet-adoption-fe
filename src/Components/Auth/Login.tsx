@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { UserContext } from "../../App";
 import { login } from "../../lib/userApi";
-import Error from "../CommonComponents/Error";
+import Message, { MessageType } from "../CommonComponents/Message";
 
 interface Props {
   setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,7 +13,8 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
     { email: "", password: "" }
   );
 
-  const [error, setError] = useState("");
+  const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
+
   const { setUser } = useContext(UserContext);
 
   function handleInput(
@@ -25,7 +26,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
   async function handleSubmit() {
     const response = await login(formData.email, formData.password);
     if (response.error) {
-      setError(response.error);
+      setMsg({ text: response.error, type: "error" });
     }
     if (response.user) {
       setUser(response.user);
@@ -58,7 +59,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
         Submit
       </Button>
 
-      <Error error={error} />
+      <Message {...msg} />
     </Form>
   );
 };

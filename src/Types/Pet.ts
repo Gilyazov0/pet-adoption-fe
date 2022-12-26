@@ -1,7 +1,7 @@
 import { AdoptStatus } from "./AdoptStatus";
 import { PetType } from "./PetsTypes";
 
-export default interface Pet {
+export type Pet = {
   type: PetType;
   name: string;
   adoptionStatus: AdoptStatus;
@@ -11,9 +11,11 @@ export default interface Pet {
   color: string;
   bio: string;
   hypoallergnic: boolean;
-  dietary: string[];
+  dietary: string;
   breed: string;
   id: string;
   adoptedBy?: string;
   fosteredBy?: string;
-}
+};
+
+export default Pet;

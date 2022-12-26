@@ -1,37 +1,43 @@
 import { useState } from "react";
 import { Form, FloatingLabel, Button } from "react-bootstrap";
-import { PetType } from "../Types/PetsTypes";
 import "../style/AddPet.css";
+import { addPet } from "../lib/petsApi";
+import Pet from "../Types/Pet";
+import Message from "./CommonComponents/Message";
+import { MessageType } from "./CommonComponents/Message";
 
-interface FormData {
-  type: PetType;
-  name: string;
-  height: number;
-  weight: number;
-  color: string;
-  bio: string;
-  hypoallergnic: boolean;
-  //   dietary: string[];
-  breed: string;
-}
 const AddPet: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    type: PetType.Cat,
+  const [formData, setFormData] = useState<
+    Omit<Pet, "id" | "picture" | "adoptionStatus">
+  >({
+    type: "Cat",
     bio: "",
     breed: "",
     color: "",
-    height: NaN,
+    height: 0,
     hypoallergnic: true,
     name: "",
-    weight: NaN,
+    weight: 0,
+    dietary: "",
   });
+
+  const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
   ) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
-  async function handleSubmit() {}
+  async function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    const response = await addPet(formData);
+    if (response.error) {
+      setMsg({ text: response.error, type: "error" });
+    } else {
+      setMsg({ text: "Pet is added to database", type: "success" });
+    }
+  }
+
   return (
     <Form className="add-pet-form">
       <FloatingLabel label="Name" className="mb-3">
@@ -40,7 +46,8 @@ const AddPet: React.FC = () => {
           placeholder="Name"
           name={"name"}
           onChange={(e) => handleInput(e)}
-          value={formData?.name}
+          value={formData.name}
+          required
         />
       </FloatingLabel>
 
@@ -50,7 +57,8 @@ const AddPet: React.FC = () => {
           placeholder="Weight"
           name={"weight"}
           onChange={(e) => handleInput(e)}
-          value={formData?.weight}
+          value={formData.weight ? formData.weight : ""}
+          required
         />
       </FloatingLabel>
 
@@ -60,7 +68,8 @@ const AddPet: React.FC = () => {
           placeholder="Height"
           name={"height"}
           onChange={(e) => handleInput(e)}
-          value={formData?.height}
+          value={formData.height ? formData.height : ""}
+          required
         />
       </FloatingLabel>
 
@@ -70,18 +79,29 @@ const AddPet: React.FC = () => {
           placeholder="Color"
           name={"color"}
           onChange={(e) => handleInput(e)}
-          value={formData?.color}
+          value={formData.color}
+          required
+        />
+      </FloatingLabel>
+
+      <FloatingLabel label="Dietary" className="mb-3">
+        <Form.Control
+          type="text"
+          placeholder="Dietary"
+          name={"dietary"}
+          onChange={(e) => handleInput(e)}
+          value={formData.dietary}
         />
       </FloatingLabel>
 
       <FloatingLabel label="Biography" className="mb-3">
         <Form.Control
-          style={{ height: "100px" }}
+          style={{ height: "90px" }}
           required
           name="bio"
           as="textarea"
           placeholder="Biography"
-          value={formData?.bio}
+          value={formData.bio}
           onChange={(e) => handleInput(e)}
         />
       </FloatingLabel>
@@ -94,13 +114,19 @@ const AddPet: React.FC = () => {
           placeholder="Breed"
           name={"breed"}
           onChange={(e) => handleInput(e)}
-          value={formData?.breed}
+          value={formData.breed}
+          required
         />
       </FloatingLabel>
 
-      <Button className="btn-custom" onClick={() => handleSubmit()}>
+      <Button
+        className="btn-custom"
+        type="submit"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         Submit
       </Button>
+      <Message text={msg.text} type={msg.type} />
     </Form>
   );
 };

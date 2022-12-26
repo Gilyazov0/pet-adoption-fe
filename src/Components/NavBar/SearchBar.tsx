@@ -2,7 +2,6 @@ import { Accordion, Button, Form } from "react-bootstrap";
 import "../../style/SearchBar.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { PetType } from "../../Types/PetsTypes";
 
 const SearchBar: React.FC<{ setShowSearch: Function }> = ({
   setShowSearch,
@@ -60,10 +59,10 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
                 name="type"
                 onChange={(e) => handleInput(e)}
               >
-                <option value={""}>Select animal type</option>
-                <option value={PetType[PetType.Dog]}>Dog</option>
-                <option value={PetType[PetType.Cat]}>Cat</option>
-                <option value={PetType[PetType.Other]}>Other</option>
+                <option value="">Select animal type</option>
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Other">Other</option>
               </Form.Select>
             </div>
           </Accordion.Header>

@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { UserContext } from "../App";
-import User from "../Types/User";
-import Error from "./CommonComponents/Error";
+import Message, { MessageType } from "./CommonComponents/Message";
 import "../style/UserProfile.css";
 import passwordValidation from "../lib/passwordValidation";
 import { updateUser } from "../lib/userApi";
@@ -18,7 +17,8 @@ interface FormData {
 
 const UserProfile: React.FC = () => {
   const { user, setUser } = useContext(UserContext);
-  const [error, setError] = useState("");
+  const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
+
   const [formData, setFormData] = useState<FormData>({
     email: user!.email,
     firstName: user!.firstName,
@@ -39,7 +39,7 @@ const UserProfile: React.FC = () => {
     e.preventDefault();
     if (formData.password) {
       const error = passwordValidation(password);
-      setError(error);
+      setMsg({ text: error, type: "error" });
     }
 
     const response = await updateUser(
@@ -52,7 +52,7 @@ const UserProfile: React.FC = () => {
     );
 
     if (response.error) {
-      setError(response.error);
+      setMsg({ text: response.error, type: "error" });
       return;
     }
 
@@ -135,7 +135,7 @@ const UserProfile: React.FC = () => {
         >
           Submit
         </Button>
-        <Error error={error} />
+        <Message {...msg} />
       </Form>
     </>
   );

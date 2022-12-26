@@ -2,7 +2,6 @@ import "../../style/PetProfile.css";
 import { Card, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getPetById } from "../../lib/petsApi";
-import { PetType } from "../../Types/PetsTypes";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../App";
 import SavePetButton from "./SavePetButton";
@@ -45,7 +44,7 @@ const PetProfile: React.FC = () => {
           <Card.Text>{`${pet.bio}`}</Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroup.Item>{`Type: ${PetType[pet.type]}`}</ListGroup.Item>
+          <ListGroup.Item>{`Type: ${pet.type}`}</ListGroup.Item>
           <ListGroup.Item>{`Breed: ${pet.breed}`}</ListGroup.Item>
           <ListGroup.Item>{`Color: ${pet.color}`}</ListGroup.Item>
           <ListGroup.Item>{`Height: ${pet.height} cm`}</ListGroup.Item>
