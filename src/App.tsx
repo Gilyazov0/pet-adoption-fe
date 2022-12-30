@@ -11,6 +11,7 @@ import useUserChange from "./Hooks/useUserChange";
 import MyPets from "./Components/MyPets";
 import UserProfile from "./Components/UserProfile";
 import AddPet from "./Components/AddPet";
+import ErrorBoundary from "./Components/CommonComponents/ErrorBoundary";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -26,17 +27,19 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ user, setUser }}>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/userProfile" element={<UserProfile />} />
-          <Route path="/addPet" element={<AddPet />} />
-          <Route path="/myPets" element={<MyPets />} />
-          <Route path="/profile/:id" element={<PetProfile />} />
-        </Routes>
-      </UserContext.Provider>
+      <ErrorBoundary>
+        <UserContext.Provider value={{ user, setUser }}>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/userProfile" element={<UserProfile />} />
+            <Route path="/addPet" element={<AddPet />} />
+            <Route path="/myPets" element={<MyPets />} />
+            <Route path="/profile/:id" element={<PetProfile />} />
+          </Routes>
+        </UserContext.Provider>
+      </ErrorBoundary>
     </div>
   );
 }

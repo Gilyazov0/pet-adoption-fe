@@ -12,3 +12,15 @@
   outline: 0;
   box-shadow: none !important;
 } */
+
+.view-selector {
+  width: 8rem;
+  margin-right: 2rem;
+
+  background-color: #ddc5a2;
+  border-color: #301b28;
+}
+
+option:hover {
+  background-color: #b6452c;
+}

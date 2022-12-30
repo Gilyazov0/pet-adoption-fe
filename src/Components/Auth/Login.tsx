@@ -29,7 +29,6 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
       setMsg({ text: response.error, type: "error" });
     }
     if (response.user) {
-      console.log(response.user);
       setUser(response.user);
       setShowAuth(false);
     }

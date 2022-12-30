@@ -21,7 +21,21 @@ const Search: React.FC = () => {
 
     getSearchResults();
   }, [searchParams]);
-  return <>{pets ? <PetCardsList pets={pets} /> : <Loading />}</>;
+  return (
+    <>
+      {pets ? (
+        pets.length > 0 ? (
+          <PetCardsList pets={pets} />
+        ) : (
+          <div className="w-100 text-center mt-5">
+            <span className="display-3">Nothing have been found :(</span>
+          </div>
+        )
+      ) : (
+        <Loading />
+      )}
+    </>
+  );
 };
 
 export default Search;

@@ -9,7 +9,7 @@
   justify-content: space-between;
   top: 0;
   border-bottom: solid 3px #301b28;
-  border-radius: 6px;
+  border-radius: 0 0 6px 6px;
 }
 
 .label {
