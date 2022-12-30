@@ -14,7 +14,7 @@ export type Pet = {
   dietary: string;
   breed: string;
   id: number;
-  owner_id?: number;
+  ownerId?: number;
 };
 
 export default Pet;
