@@ -12,9 +12,9 @@ const FosterPetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
       case "Adopted":
         return "";
       case "Fostered":
-        return pet.fosteredBy === user?.id ? "Return" : "";
+        return pet.owner_id === user?.id ? "Return" : "";
       case "Available":
-        return "Foster";
+        return user ? "Foster" : "";
     }
   };
 

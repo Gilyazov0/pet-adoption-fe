@@ -10,9 +10,9 @@ const AdoptPetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
   const getLabel = () => {
     switch (pet.adoptionStatus) {
       case "Adopted":
-        return pet.adoptedBy === user?.id ? "Return" : "";
+        return pet.owner_id === user?.id ? "Return" : "";
       case "Fostered":
-        return pet.fosteredBy === user?.id ? "Adopt" : "";
+        return pet.owner_id === user?.id ? "Adopt" : "";
       case "Available":
         return "Adopt";
     }

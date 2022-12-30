@@ -14,6 +14,12 @@ type UserResponseType = Promise<
     }
 >;
 
+function handleError(err: unknown) {
+  if (err instanceof AxiosError)
+    return { error: err.response ? err.response.data.message : err.message };
+  else return { error: "unknown error" };
+}
+
 export async function createUser(
   firstName: string,
   lastName: string,
@@ -26,9 +32,7 @@ export async function createUser(
     const response = await axios.post<User>(BASE_URL, data);
     return { user: response.data };
   } catch (err) {
-    if (err instanceof AxiosError || err instanceof Error)
-      return { error: err.message };
-    else return { error: "unknown error" };
+    return handleError(err);
   }
 }
 
@@ -38,9 +42,7 @@ export async function login(email: string, password: string): UserResponseType {
     const response = await axios.get<User>(BASE_URL, { params });
     return { user: response.data };
   } catch (err) {
-    if (err instanceof AxiosError || err instanceof Error)
-      return { error: err.message };
-    else return { error: "unknown error" };
+    return handleError(err);
   }
 }
 
@@ -57,15 +59,13 @@ export async function updateUser(
     const response = await axios.patch<User>(BASE_URL, data);
     return { user: response.data };
   } catch (err) {
-    if (err instanceof AxiosError || err instanceof Error)
-      return { error: err.message };
-    else return { error: "unknown error" };
+    return handleError(err);
   }
 }
 
 export async function toggleData(
-  userId: string,
-  petId: string,
+  userId: number,
+  petId: number,
   url: string
 ): UserResponseType {
   try {
@@ -73,29 +73,27 @@ export async function toggleData(
     const response = await axios.post<User>(`${BASE_URL}${url}`, data);
     return { user: response.data };
   } catch (err) {
-    if (err instanceof AxiosError || err instanceof Error)
-      return { error: err.message };
-    else return { error: "unknown error" };
+    return handleError(err);
   }
 }
 
 export async function toggleSave(
-  userId: string,
-  petId: string
+  userId: number,
+  petId: number
 ): UserResponseType {
   return toggleData(userId, petId, "toggleSave");
 }
 
 export async function toggleAdopt(
-  userId: string,
-  petId: string
+  userId: number,
+  petId: number
 ): UserResponseType {
   return toggleData(userId, petId, "toggleAdopt");
 }
 
 export async function toggleFoster(
-  userId: string,
-  petId: string
+  userId: number,
+  petId: number
 ): UserResponseType {
   return toggleData(userId, petId, "toggleFoster");
 }

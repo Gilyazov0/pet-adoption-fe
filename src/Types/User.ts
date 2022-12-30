@@ -1,11 +1,13 @@
+import Pet from "./Pet";
+
 export default interface User {
-  id: string;
+  id: number;
   email: string;
   phone: string;
   firstName: string;
   lastName: string;
   isAdmin: boolean;
-  myPets: string[];
-  savedPets: string[];
+  pets: Pet[];
+  savedPets: Pet[];
   bio: string;
 }

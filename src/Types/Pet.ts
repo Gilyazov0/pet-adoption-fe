@@ -13,9 +13,8 @@ export type Pet = {
   hypoallergnic: boolean;
   dietary: string;
   breed: string;
-  id: string;
-  adoptedBy?: string;
-  fosteredBy?: string;
+  id: number;
+  owner_id?: number;
 };
 
 export default Pet;

@@ -1,25 +1,15 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Form } from "react-bootstrap";
 import { UserContext } from "../App";
-import { getPetsByIds } from "../lib/petsApi";
-import Pet from "../Types/Pet";
 import "../style/MyPets.css";
 import User from "../Types/User";
 import PetCardsList from "./PetsList/PetsList";
+
 const MyPets: React.FC = () => {
   const user = useContext(UserContext).user as User;
   const [view, setView] = useState<"myPets" | "savedPets">("myPets");
-  const [pets, setPets] = useState<Pet[]>([]);
 
-  useEffect(() => {
-    async function getPets() {
-      const ids = view === "myPets" ? user.myPets : user.savedPets;
-      const newPets = await getPetsByIds(ids);
-      setPets(newPets);
-    }
-    getPets();
-  }, [user, view]);
-
+  const pets = view === "myPets" ? user.pets : user.savedPets;
   return (
     <>
       <div className="d-flex mt-3 ms-3 align-items-center">
