@@ -126,7 +126,7 @@ const AddPet: React.FC = () => {
       >
         Submit
       </Button>
-      <Message text={msg.text} type={msg.type} />
+      <Message msg={msg} setMsg={setMsg} />
     </Form>
   );
 };

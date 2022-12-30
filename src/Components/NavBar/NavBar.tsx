@@ -23,9 +23,9 @@ const NavBar: React.FC = () => {
       </div>
 
       {user && (
-        <Button className="m-3 btn-custom " onClick={() => navigate("/myPets")}>
-          My pets
-        </Button>
+        <Link to={"/myPets"} className={"no-underline"}>
+          <div className="label">My pets</div>
+        </Link>
       )}
 
       {user && (
@@ -39,15 +39,14 @@ const NavBar: React.FC = () => {
         </Link>
       )}
 
-      {user ? (
-        <Button className="m-3 btn-custom " onClick={() => setUser(null)}>
-          Logout
-        </Button>
-      ) : (
-        <Button className="m-3 btn-custom " onClick={() => setShowAuth(true)}>
-          Login/SignUp
-        </Button>
-      )}
+      <div
+        className="label"
+        onClick={() => {
+          user ? setUser(null) : setShowAuth(true);
+        }}
+      >
+        {user ? "Logout" : "Login/SignUp"}
+      </div>
 
       <Auth setShowAuth={setShowAuth} showAuth={showAuth} />
       <SearchBarModal showSearch={showSearch} setShowSearch={setShowSearch} />

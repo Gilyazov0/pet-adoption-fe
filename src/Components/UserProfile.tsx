@@ -135,7 +135,7 @@ const UserProfile: React.FC = () => {
         >
           Submit
         </Button>
-        <Message {...msg} />
+        <Message msg={msg} setMsg={setMsg} />
       </Form>
     </>
   );

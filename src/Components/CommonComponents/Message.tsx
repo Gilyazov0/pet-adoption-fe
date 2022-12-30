@@ -1,21 +1,21 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 export type MessageType = {
   text: string;
   type: "error" | "success";
 };
 
-const Message: React.FC<MessageType> = (msg) => {
-  const [show, setShow] = useState<boolean>(true);
+const Message: React.FC<{
+  msg: MessageType;
+  setMsg: React.Dispatch<React.SetStateAction<MessageType>>;
+}> = ({ msg, setMsg }) => {
   useEffect(() => {
-    setShow(true);
-    const timer = setTimeout(() => setShow(false), 10000);
+    if (!msg.text) return;
+    const timer = setTimeout(() => setMsg({ ...msg, text: "" }), 10000);
     return () => clearTimeout(timer);
   }, [msg]);
   return (
     <span
-      className={`${msg.type === "error" ? "text-danger" : "text-success"}  ${
-        show ? "" : "d-none"
-      }`}
+      className={`${msg.type === "error" ? "text-danger" : "text-success"}`}
     >
       {msg.text}
     </span>

@@ -117,13 +117,13 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
       </FloatingLabel>
 
       <Button
-        className="btn-custom me-3"
+        className="btn-custom me-2"
         type="submit"
         onClick={(e) => handleSubmit(e)}
       >
         Submit
       </Button>
-      <Message {...msg} />
+      <Message msg={msg} setMsg={setMsg} />
     </Form>
   );
 };

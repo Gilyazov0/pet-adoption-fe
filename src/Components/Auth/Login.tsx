@@ -56,11 +56,11 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
         />
       </FloatingLabel>
 
-      <Button className="btn-custom" onClick={() => handleSubmit()}>
+      <Button className="btn-custom me-2" onClick={() => handleSubmit()}>
         Submit
       </Button>
 
-      <Message {...msg} />
+      <Message msg={msg} setMsg={setMsg} />
     </Form>
   );
 };
