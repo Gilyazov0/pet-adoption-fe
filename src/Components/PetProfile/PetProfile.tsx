@@ -34,7 +34,11 @@ const PetProfile: React.FC = () => {
   const yourPet = user && pet && pet.ownerId === user.id ? true : false;
   return pet ? (
     <div className="pet-profile">
-      <img className="profile-img" src="/AppIcon2.jpg" alt="petImg" />
+      <img
+        className="profile-img"
+        src={pet.picture ? pet.picture : "/AppIcon2.jpg"}
+        alt="petImg"
+      />
       <Card>
         <Card.Body>
           <Card.Title>{`${pet.name}`}</Card.Title>

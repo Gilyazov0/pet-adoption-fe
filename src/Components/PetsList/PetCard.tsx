@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AdoptStatus } from "../../Types/AdoptStatus";
 
-const PetCard: React.FC<Pet> = ({ adoptionStatus, name, id }) => {
+const PetCard: React.FC<Pet> = ({ adoptionStatus, name, id, picture }) => {
   const colorClass =
     adoptionStatus === "Adopted"
       ? "text-success"
@@ -14,7 +14,11 @@ const PetCard: React.FC<Pet> = ({ adoptionStatus, name, id }) => {
   return (
     <div className="d-flex">
       <Card>
-        <Card.Img variant="top" className="card-img" src="/AppIcon2.jpg" />
+        <Card.Img
+          variant="top"
+          className="card-img"
+          src={picture ? picture : "/AppIcon2.jpg"}
+        />
         <Card.Body>
           <Card.Title>
             {`${name}: `}

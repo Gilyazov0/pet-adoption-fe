@@ -4,8 +4,12 @@ import Pet from "../Types/Pet";
 const BASE_URL = "http://localhost:8080/pet";
 
 export async function getPetById(id: string) {
-  const pets = await getPetsByIds([id]);
-  return pets[0];
+  try {
+    const res = await axios.get(`${BASE_URL}/id`, { params: { id } });
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export async function search(
@@ -28,7 +32,6 @@ export async function search(
 export async function addPet(
   data: Omit<Pet, "id" | "picture" | "adoptionStatus">
 ) {
-  console.log(data);
   try {
     const response = await axios.post<Pet>(`${BASE_URL}/addPet`, data);
     return { pet: response.data };

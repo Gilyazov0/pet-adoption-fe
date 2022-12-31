@@ -26,7 +26,7 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
     let query = "?";
     if (searchParams.type) query += `type=${searchParams.type}&&`;
     if (searchParams.status) query += `status=${searchParams.status}&&`;
-    if (searchParams.height) query += `hight=${searchParams.height}&&`;
+    if (searchParams.height) query += `height=${searchParams.height}&&`;
     if (searchParams.weight) query += `weight=${searchParams.weight}&&`;
     if (searchParams.name) query += `name=${searchParams.name}&&`;
 
@@ -37,7 +37,6 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
     const query = getQuery();
     if (!query) return;
     setShowSearch(false);
-
     navigate(`/Search${query}`);
   }
 
