@@ -38,9 +38,15 @@ export async function createUser(
 
 export async function login(email: string, password: string): UserResponseType {
   try {
-    const params = { email, password };
-    const response = await axios.get<User>(BASE_URL, { params });
-    return { user: response.data };
+    const data = { email, password };
+    const response = await axios.post<{ user: User; token: string }>(
+      `${BASE_URL}/login`,
+      data
+    );
+
+    localStorage.setItem("token", response.data.token);
+
+    return { user: response.data.user };
   } catch (err) {
     return handleError(err);
   }
