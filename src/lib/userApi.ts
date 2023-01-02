@@ -1,5 +1,6 @@
 import User from "../Types/User";
 import axios, { AxiosError, AxiosInstance } from "axios";
+import AppApi from "./abstractApi";
 
 type UserResponseType = Promise<
   | {
@@ -11,10 +12,9 @@ type UserResponseType = Promise<
       user?: undefined;
     }
 >;
-export default class UserApi {
+export default class UserApi extends AppApi {
   static instance: AxiosInstance = this.getAxiosInstance();
-  static tokenKey: string = "pet-app-token";
-  static BASE_URL = "http://localhost:8080/user/";
+  static BASE_URL = `${super.BASE_URL}user/`;
 
   public static async updateUser(
     email: string,
@@ -45,6 +45,7 @@ export default class UserApi {
 
       return { user: response.data.user };
     } catch (err) {
+      console.log(err);
       return this.handleError(err);
     }
   }
@@ -90,18 +91,18 @@ export default class UserApi {
     return this.changeData(userId, petId, "changeFoster");
   }
 
-  private static getToken() {
-    return localStorage.getItem(this.tokenKey);
-  }
+  // private static getToken() {
+  //   return localStorage.getItem(this.tokenKey);
+  // }
 
-  private static setToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
-    this.instance = this.getAxiosInstance();
-  }
+  // private static setToken(token: string) {
+  //   localStorage.setItem(this.tokenKey, token);
+  //   this.instance = this.getAxiosInstance();
+  // }
 
-  private static removeToken() {
-    localStorage.removeItem(this.tokenKey);
-  }
+  // private static removeToken() {
+  //   localStorage.removeItem(this.tokenKey);
+  // }
 
   private static async changeData(
     userId: number,
@@ -120,18 +121,18 @@ export default class UserApi {
     }
   }
 
-  private static handleError(err: unknown) {
-    if (err instanceof AxiosError)
-      return { error: err.response ? err.response.data.message : err.message };
-    else return { error: "unknown error" };
-  }
+  // private static handleError(err: unknown) {
+  //   if (err instanceof AxiosError)
+  //     return { error: err.response ? err.response.data.message : err.message };
+  //   else return { error: "unknown error" };
+  // }
 
-  private static getAxiosInstance() {
-    const token = this.getToken();
-    return axios.create({
-      baseURL: "https://some-domain.com/api/",
-      timeout: 1000,
-      headers: { authorization: `Bearer ${token}` },
-    });
-  }
+  // private static getAxiosInstance() {
+  //   const token = this.getToken();
+  //   return axios.create({
+  //     baseURL: "https://some-domain.com/api/",
+  //     timeout: 1000,
+  //     headers: { authorization: `Bearer ${token}` },
+  //   });
+  // }
 }

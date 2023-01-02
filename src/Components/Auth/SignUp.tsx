@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { UserContext } from "../../App";
-import passwordValidation from "../../lib/passwordValidation";
+import PasswordValidation from "../../lib/passwordValidation";
 import UserApi from "../../lib/userApi";
 import Message, { MessageType } from "../CommonComponents/Message";
 
@@ -31,7 +31,10 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
 
   async function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
-    const error = passwordValidation(formData.password1, formData.password2);
+    const error = PasswordValidation.validate(
+      formData.password1,
+      formData.password2
+    );
 
     if (error) {
       setMsg({ text: error, type: "error" });
