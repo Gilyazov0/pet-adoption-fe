@@ -54,6 +54,7 @@ const PetProfile: React.FC = () => {
             pet.hypoallergnic ? "Yes" : "No"
           }`}</ListGroup.Item>
           <ListGroup.Item>{`Dietary: ${pet.dietary}`}</ListGroup.Item>
+          <ListGroup.Item>{`Biography: ${pet.bio}`}</ListGroup.Item>
           <ListGroup.Item>
             {"Adoption status: "}
             <span className={`${colorClass}`}>{`${pet.adoptionStatus} ${

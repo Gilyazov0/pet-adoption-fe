@@ -1,14 +1,17 @@
 .title {
   font-size: 50px;
-  position: absolute;
-  top: 150px;
-  left: 50px;
+  padding: 100px 0 0 50px;
 }
-.home-img {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 85vh;
-  object-fit: contain;
-  z-index: -1;
+
+.img {
+  background-image: url("./home3.png");
+  height: 100%;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: auto;
+  position: relative;
+}
+
+.home {
+  height: calc(100vh - 80px);
 }

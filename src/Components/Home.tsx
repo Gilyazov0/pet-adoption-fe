@@ -8,13 +8,13 @@ function Home() {
   return (
     <div className="App">
       <div className="home">
-        <div className="title">
-          {user
-            ? `Welcome back, ${user.firstName} ${user.lastName}`
-            : "Standing up for animals since... just about to start"}
+        <div className="img">
+          <div className="title">
+            {user
+              ? `Welcome back, ${user.firstName} ${user.lastName}!`
+              : "Standing up for animals since... just about to start"}
+          </div>
         </div>
-
-        <img className="home-img" src="./home3.png" alt="" />
       </div>
     </div>
   );

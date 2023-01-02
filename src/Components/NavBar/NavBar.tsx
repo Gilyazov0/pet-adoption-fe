@@ -5,12 +5,12 @@ import "../../style/NavBar.css";
 import Auth from "../Auth/Auth";
 import SearchBarModal from "./SearchBarModal";
 import { UserContext } from "../../App";
+import UserApi from "../../lib/userApi";
 
 const NavBar: React.FC = () => {
   const { user, setUser } = useContext(UserContext);
   const [showAuth, setShowAuth] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
-  const navigate = useNavigate();
 
   return (
     <div className="nav-bar">
@@ -43,6 +43,7 @@ const NavBar: React.FC = () => {
         className="label"
         onClick={() => {
           user ? setUser(null) : setShowAuth(true);
+          UserApi.logout();
         }}
       >
         {user ? "Logout" : "Login/SignUp"}
