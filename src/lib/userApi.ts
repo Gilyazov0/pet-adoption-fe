@@ -1,7 +1,7 @@
 import User from "../Types/User";
 import axios, { AxiosInstance } from "axios";
 import AppApi from "./abstractApi";
-import ApiResponse from "../Types/ApiResponce";
+import ApiResponse from "../Types/ApiResponse";
 
 export default class UserApi extends AppApi {
   static BASE_URL = `${super.BASE_URL}user/`;

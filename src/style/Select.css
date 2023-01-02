@@ -1,0 +1,4 @@
+.react-select__indicators {
+  filter: invert(28%) sepia(79%) saturate(1358%) hue-rotate(343deg)
+    brightness(92%) contrast(84%);
+}

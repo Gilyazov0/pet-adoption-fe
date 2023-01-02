@@ -1,8 +1,10 @@
 import Select from "react-select";
+import "../../style/Select.css";
 
 const SelectStyled: React.FC<{
   options: { value: string; label: string }[];
-}> = ({ options }) => {
+  onChange: Function;
+}> = ({ options, onChange }) => {
   const style = {
     menu: (baseStyles: any) => {
       return {
@@ -20,6 +22,7 @@ const SelectStyled: React.FC<{
         borderColor: "#301b28",
         color: "#301b28",
         width: "8rem",
+        fill: "red",
       };
     },
     option: () => {
@@ -37,6 +40,9 @@ const SelectStyled: React.FC<{
       defaultValue={options[0]}
       styles={style}
       classNamePrefix="react-select"
+      onChange={(e) => {
+        if (e) onChange(e?.value);
+      }}
     />
   );
 };

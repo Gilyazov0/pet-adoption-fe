@@ -56,7 +56,7 @@ const UserProfile: React.FC = () => {
       return;
     }
 
-    setUser(response.user!);
+    setUser(response.data!);
   }
 
   return (

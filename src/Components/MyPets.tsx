@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { Form } from "react-bootstrap";
 import { UserContext } from "../App";
 import "../style/MyPets.css";
 import User from "../Types/User";
@@ -23,27 +22,8 @@ const MyPets: React.FC = () => {
     <>
       <div className="d-flex mt-3 ms-3 align-items-center">
         <div className="d-flex flex-row-reverse w-100 m-3">
-          <SelectStyled options={options} />
-
-          {/* <Form.Select
-            className="view-selector"
-            onChange={(e) => setView(e.target.value as ViewType)}
-          >
-            <option value={"myPets"}>My pets</option>
-            <option value={"savedPets"}>Saved pets</option>
-          </Form.Select> */}
+          <SelectStyled options={options} onChange={setView} />
         </div>
-        {/*         
-        <span className="me-3 fs-4">my pets</span>
-
-
-        <Form.Check
-          type="switch"
-          onClick={() => {
-            setView(view === "myPets" ? "savedPets" : "myPets");
-          }}
-        />
-        <span className="me-3 fs-4">saved pets</span> */}
       </div>
       {pets.length > 0 ? (
         <PetCardsList pets={pets} />
