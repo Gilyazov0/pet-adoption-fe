@@ -1,17 +1,19 @@
 .pet-profile {
   display: flex;
-  gap: 60px;
-  padding: 60px;
-}
-
-.card {
-  width: 100%;
+  gap: 6vh;
+  padding: 6vh;
 }
 
 .profile-img {
-  object-fit: contain;
-  height: calc(100vh - 200px);
+  object-fit: cover;
+  height: calc(88vh - 80px);
+  max-width: 60vw;
 
-  border: solid 0px;
+  border: solid 1px;
   border-radius: 0.5rem;
+}
+
+.pet-profile-container {
+  display: flex;
+  justify-content: center;
 }

@@ -33,41 +33,43 @@ const PetProfile: React.FC = () => {
 
   const yourPet = user && pet && pet.ownerId === user.id ? true : false;
   return pet ? (
-    <div className="pet-profile">
-      <img
-        className="profile-img"
-        src={pet.picture ? pet.picture : "/AppIcon2.jpg"}
-        alt="petImg"
-      />
-      <Card>
-        <Card.Body>
-          <Card.Title>{`${pet.name}`}</Card.Title>
-          <Card.Text>{`${pet.bio}`}</Card.Text>
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroup.Item>{`Type: ${pet.type}`}</ListGroup.Item>
-          <ListGroup.Item>{`Breed: ${pet.breed}`}</ListGroup.Item>
-          <ListGroup.Item>{`Color: ${pet.color}`}</ListGroup.Item>
-          <ListGroup.Item>{`Height: ${pet.height} cm`}</ListGroup.Item>
-          <ListGroup.Item>{`Weight: ${pet.weight} kg`}</ListGroup.Item>
-          <ListGroup.Item>{`Hypoallergnic: ${
-            pet.hypoallergnic ? "Yes" : "No"
-          }`}</ListGroup.Item>
-          <ListGroup.Item>{`Dietary: ${pet.dietary}`}</ListGroup.Item>
-          <ListGroup.Item>{`Biography: ${pet.bio}`}</ListGroup.Item>
-          <ListGroup.Item>
-            {"Adoption status: "}
-            <span className={`${colorClass}`}>{`${pet.adoptionStatus} ${
-              yourPet ? "by you" : ""
-            }`}</span>
-          </ListGroup.Item>
-        </ListGroup>
-        <Card.Body>
-          <SavePetButton pet={pet} />
-          <AdoptPetButton pet={pet} />
-          <FosterPetButton pet={pet} />
-        </Card.Body>
-      </Card>
+    <div className="d-flex justify-content-center">
+      <div className="pet-profile">
+        <img
+          className="profile-img"
+          src={pet.picture ? pet.picture : "/AppIcon2.jpg"}
+          alt="petImg"
+        />
+        <Card>
+          <Card.Body>
+            <Card.Title>{`${pet.name}`}</Card.Title>
+            <Card.Text>{`${pet.bio}`}</Card.Text>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroup.Item>{`Type: ${pet.type}`}</ListGroup.Item>
+            <ListGroup.Item>{`Breed: ${pet.breed}`}</ListGroup.Item>
+            <ListGroup.Item>{`Color: ${pet.color}`}</ListGroup.Item>
+            <ListGroup.Item>{`Height: ${pet.height} cm`}</ListGroup.Item>
+            <ListGroup.Item>{`Weight: ${pet.weight} kg`}</ListGroup.Item>
+            <ListGroup.Item>{`Hypoallergnic: ${
+              pet.hypoallergnic ? "Yes" : "No"
+            }`}</ListGroup.Item>
+            <ListGroup.Item>{`Dietary: ${pet.dietary}`}</ListGroup.Item>
+            <ListGroup.Item>{`Biography: ${pet.bio}`}</ListGroup.Item>
+            <ListGroup.Item>
+              {"Adoption status: "}
+              <span className={`${colorClass}`}>{`${pet.adoptionStatus} ${
+                yourPet ? "by you" : ""
+              }`}</span>
+            </ListGroup.Item>
+          </ListGroup>
+          <Card.Body>
+            <SavePetButton pet={pet} />
+            <AdoptPetButton pet={pet} />
+            <FosterPetButton pet={pet} />
+          </Card.Body>
+        </Card>
+      </div>
     </div>
   ) : (
     <Loading />
