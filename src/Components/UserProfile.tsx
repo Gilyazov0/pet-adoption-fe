@@ -3,8 +3,8 @@ import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { UserContext } from "../App";
 import Message, { MessageType } from "./CommonComponents/Message";
 import "../style/UserProfile.css";
-import passwordValidation from "../lib/passwordValidation";
 import UserApi from "../lib/userApi";
+import PasswordValidation from "../lib/passwordValidation";
 
 interface FormData {
   email: string;
@@ -38,7 +38,7 @@ const UserProfile: React.FC = () => {
   async function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (formData.password) {
-      const error = passwordValidation(password);
+      const error = PasswordValidation.validate(password);
       setMsg({ text: error, type: "error" });
     }
 

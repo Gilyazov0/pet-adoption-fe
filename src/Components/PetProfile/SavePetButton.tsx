@@ -6,9 +6,10 @@ import PetProps from "../../Types/Pet";
 
 const SavePetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
   const { user, setUser } = useContext(UserContext);
-  const label = user?.savedPets.findIndex((savedPet) => savedPet.id === pet.id)
-    ? "Unsave"
-    : "Save";
+  const label =
+    user?.savedPets.findIndex((savedPet) => savedPet.id === pet.id) === -1
+      ? "Unsave"
+      : "Save";
 
   return (
     <>
