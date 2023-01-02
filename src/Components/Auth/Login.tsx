@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { UserContext } from "../../App";
-import { login } from "../../lib/userApi";
+import UserApi from "../../lib/userApi";
 import Message, { MessageType } from "../CommonComponents/Message";
 
 interface Props {
@@ -24,7 +24,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
   }
 
   async function handleSubmit() {
-    const response = await login(formData.email, formData.password);
+    const response = await UserApi.login(formData.email, formData.password);
     if (response.error) {
       setMsg({ text: response.error, type: "error" });
     }

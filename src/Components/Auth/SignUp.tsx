@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 import { UserContext } from "../../App";
 import passwordValidation from "../../lib/passwordValidation";
-import { createUser } from "../../lib/userApi";
+import UserApi from "../../lib/userApi";
 import Message, { MessageType } from "../CommonComponents/Message";
 
 interface Props {
@@ -37,7 +37,7 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
       setMsg({ text: error, type: "error" });
       return;
     }
-    const response = await createUser(
+    const response = await UserApi.createUser(
       formData.firstName,
       formData.lastName,
       formData.email,

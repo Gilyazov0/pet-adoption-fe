@@ -4,7 +4,7 @@ import { UserContext } from "../App";
 import Message, { MessageType } from "./CommonComponents/Message";
 import "../style/UserProfile.css";
 import passwordValidation from "../lib/passwordValidation";
-import { updateUser } from "../lib/userApi";
+import UserApi from "../lib/userApi";
 
 interface FormData {
   email: string;
@@ -42,7 +42,7 @@ const UserProfile: React.FC = () => {
       setMsg({ text: error, type: "error" });
     }
 
-    const response = await updateUser(
+    const response = await UserApi.updateUser(
       email,
       firstName,
       lastName,
