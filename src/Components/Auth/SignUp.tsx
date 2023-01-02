@@ -53,7 +53,7 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
       return;
     }
 
-    setUser(response.user!);
+    setUser(response.data!);
     setShowAuth(false);
   }
 

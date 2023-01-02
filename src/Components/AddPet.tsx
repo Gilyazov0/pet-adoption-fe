@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, FloatingLabel, Button } from "react-bootstrap";
 import "../style/AddPet.css";
-import { addPet } from "../lib/petsApi";
+import PetApi from "../lib/petApi";
 import Pet from "../Types/Pet";
 import Message from "./CommonComponents/Message";
 import { MessageType } from "./CommonComponents/Message";
@@ -30,7 +30,7 @@ const AddPet: React.FC = () => {
   }
   async function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
-    const response = await addPet(formData);
+    const response = await PetApi.addPet(formData);
     if (response.error) {
       setMsg({ text: response.error, type: "error" });
     } else {

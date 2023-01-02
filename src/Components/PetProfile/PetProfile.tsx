@@ -1,7 +1,7 @@
 import "../../style/PetProfile.css";
 import { Card, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { getPetById } from "../../lib/petsApi";
+import PetApi from "../../lib/petApi";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../App";
 import SavePetButton from "./SavePetButton";
@@ -18,8 +18,8 @@ const PetProfile: React.FC = () => {
 
   useEffect(() => {
     async function getProfilePet() {
-      const pet = await getPetById(id!);
-      setPet(pet);
+      const res = await PetApi.getPetById(id!);
+      if (res.data) setPet(res.data);
     }
     getProfilePet();
   }, [id, user]);

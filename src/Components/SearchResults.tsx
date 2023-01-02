@@ -1,5 +1,5 @@
 import PetCardsList from "./PetsList/PetsList";
-import { search } from "../lib/petsApi";
+import PetApi from "../lib/petApi";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Pet from "../Types/Pet";
@@ -15,8 +15,8 @@ const Search: React.FC = () => {
 
   useEffect(() => {
     async function getSearchResults() {
-      const newPets = await search(name, type, weight, height, status);
-      setPets(newPets);
+      const res = await PetApi.search(name, type, weight, height, status);
+      if (res.data) setPets(res.data);
     }
 
     getSearchResults();

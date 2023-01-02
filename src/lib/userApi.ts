@@ -1,20 +1,11 @@
 import User from "../Types/User";
-import axios, { AxiosError, AxiosInstance } from "axios";
+import axios, { AxiosInstance } from "axios";
 import AppApi from "./abstractApi";
+import ApiResponse from "../Types/ApiResponce";
 
-type UserResponseType = Promise<
-  | {
-      user: User;
-      error?: undefined;
-    }
-  | {
-      error: string;
-      user?: undefined;
-    }
->;
 export default class UserApi extends AppApi {
-  static instance: AxiosInstance = this.getAxiosInstance();
   static BASE_URL = `${super.BASE_URL}user/`;
+  static instance: AxiosInstance = this.getAxiosInstance();
 
   public static async updateUser(
     email: string,
@@ -23,27 +14,30 @@ export default class UserApi extends AppApi {
     phone: string,
     bio: string,
     password?: string
-  ): UserResponseType {
+  ): ApiResponse<User> {
     try {
       const data = { email, firstName, lastName, phone, bio, password };
-      const response = await axios.patch<User>(this.BASE_URL, data);
-      return { user: response.data };
+      const response = await axios.patch<User>("", data);
+      return { data: response.data };
     } catch (err) {
       return this.handleError(err);
     }
   }
 
-  public static async login(email: string, password: string): UserResponseType {
+  public static async login(
+    email: string,
+    password: string
+  ): ApiResponse<User> {
     try {
       const data = { email, password };
       const response = await this.instance.post<{ user: User; token: string }>(
-        `${this.BASE_URL}/login`,
+        `login`,
         data
       );
 
       this.setToken(response.data.token);
 
-      return { user: response.data.user };
+      return { data: response.data.user };
     } catch (err) {
       console.log(err);
       return this.handleError(err);
@@ -60,11 +54,11 @@ export default class UserApi extends AppApi {
     email: string,
     phone: string,
     password: string
-  ): UserResponseType {
+  ): ApiResponse<User> {
     const data = { firstName, lastName, email, phone, password };
     try {
-      const response = await this.instance.post<User>(this.BASE_URL, data);
-      return { user: response.data };
+      const response = await this.instance.post<User>("", data);
+      return { data: response.data };
     } catch (err) {
       return this.handleError(err);
     }
@@ -73,66 +67,35 @@ export default class UserApi extends AppApi {
   public static async changeSave(
     userId: number,
     petId: number
-  ): UserResponseType {
+  ): ApiResponse<User> {
     return this.changeData(userId, petId, "changeSave");
   }
 
   public static async changeAdopt(
     userId: number,
     petId: number
-  ): UserResponseType {
+  ): ApiResponse<User> {
     return this.changeData(userId, petId, "changeAdopt");
   }
 
   public static async changeFoster(
     userId: number,
     petId: number
-  ): UserResponseType {
+  ): ApiResponse<User> {
     return this.changeData(userId, petId, "changeFoster");
   }
-
-  // private static getToken() {
-  //   return localStorage.getItem(this.tokenKey);
-  // }
-
-  // private static setToken(token: string) {
-  //   localStorage.setItem(this.tokenKey, token);
-  //   this.instance = this.getAxiosInstance();
-  // }
-
-  // private static removeToken() {
-  //   localStorage.removeItem(this.tokenKey);
-  // }
 
   private static async changeData(
     userId: number,
     petId: number,
     url: string
-  ): UserResponseType {
+  ): ApiResponse<User> {
     try {
       const data = { userId, petId };
-      const response = await this.instance.post<User>(
-        `${this.BASE_URL}${url}`,
-        data
-      );
-      return { user: response.data };
+      const response = await this.instance.post<User>(url, data);
+      return { data: response.data };
     } catch (err) {
       return this.handleError(err);
     }
   }
-
-  // private static handleError(err: unknown) {
-  //   if (err instanceof AxiosError)
-  //     return { error: err.response ? err.response.data.message : err.message };
-  //   else return { error: "unknown error" };
-  // }
-
-  // private static getAxiosInstance() {
-  //   const token = this.getToken();
-  //   return axios.create({
-  //     baseURL: "https://some-domain.com/api/",
-  //     timeout: 1000,
-  //     headers: { authorization: `Bearer ${token}` },
-  //   });
-  // }
 }
