@@ -24,9 +24,11 @@ export default class AppApi {
     return localStorage.getItem(this.tokenKey);
   }
 
-  protected static setToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
-    this.instance = this.getAxiosInstance();
+  protected static setToken(token?: string) {
+    if (token) {
+      localStorage.setItem(this.tokenKey, token);
+      this.instance = this.getAxiosInstance();
+    }
   }
 
   protected static removeToken() {

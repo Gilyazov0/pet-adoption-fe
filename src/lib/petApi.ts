@@ -42,15 +42,4 @@ export default class PetApi extends AppApi {
       return this.handleError(err);
     }
   }
-
-  public static async getPetsByIds(ids: string[]): ApiResponse<Pet[]> {
-    try {
-      const params = { ids };
-
-      const res = await this.instance.get(`ids/`, { params });
-      return { data: res.data };
-    } catch (err) {
-      return this.handleError(err);
-    }
-  }
 }

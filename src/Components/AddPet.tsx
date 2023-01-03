@@ -28,9 +28,10 @@ const AddPet: React.FC = () => {
   ) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
-  async function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const response = await PetApi.addPet(formData);
+    console.log(response);
     if (response.error) {
       setMsg({ text: response.error, type: "error" });
     } else {
@@ -39,7 +40,7 @@ const AddPet: React.FC = () => {
   }
 
   return (
-    <Form className="add-pet-form">
+    <Form className="add-pet-form" onSubmit={(e) => handleSubmit(e)}>
       <FloatingLabel label="Name" className="mb-3">
         <Form.Control
           type="text"
@@ -119,11 +120,7 @@ const AddPet: React.FC = () => {
         />
       </FloatingLabel>
 
-      <Button
-        className="btn-custom"
-        type="submit"
-        onSubmit={(e) => handleSubmit(e)}
-      >
+      <Button className="btn-custom" type="submit">
         Submit
       </Button>
       <Message msg={msg} setMsg={setMsg} />
