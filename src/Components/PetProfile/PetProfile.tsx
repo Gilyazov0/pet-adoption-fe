@@ -52,7 +52,7 @@ const PetProfile: React.FC = () => {
             <ListGroup.Item>{`Height: ${pet.height} cm`}</ListGroup.Item>
             <ListGroup.Item>{`Weight: ${pet.weight} kg`}</ListGroup.Item>
             <ListGroup.Item>{`Hypoallergnic: ${
-              pet.hypoallergnic ? "Yes" : "No"
+              pet.hypoallergenic ? "Yes" : "No"
             }`}</ListGroup.Item>
             <ListGroup.Item>{`Dietary: ${pet.dietary}`}</ListGroup.Item>
             <ListGroup.Item>{`Biography: ${pet.bio}`}</ListGroup.Item>

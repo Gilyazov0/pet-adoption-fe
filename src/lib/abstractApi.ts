@@ -9,8 +9,10 @@ export default class AppApi {
     const token = this.getToken();
     return axios.create({
       baseURL: this.BASE_URL,
-      timeout: 1000,
-      headers: { authorization: `Bearer ${token}` },
+      timeout: 5000,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     });
   }
 

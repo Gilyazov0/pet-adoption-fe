@@ -44,7 +44,10 @@ a:hover {
   border-color: #301b28;
   color: #b6452c;
 }
-
+.btn-custom:disabled {
+  background-color: #ddc5a2;
+  border-color: #301b28;
+}
 .btn-custom:active {
   background-color: #ddc5a2 !important;
   border-color: #ddc5a2 !important;

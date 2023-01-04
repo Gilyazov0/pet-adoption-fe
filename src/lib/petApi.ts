@@ -33,12 +33,22 @@ export default class PetApi extends AppApi {
   }
 
   public static async addPet(
-    data: Omit<Pet, "id" | "picture" | "adoptionStatus">
+    data: Omit<Pet, "id" | "picture" | "adoptionStatus"> & {
+      picture: File | undefined;
+    }
   ): ApiResponse<Pet> {
     try {
-      const response = await this.instance.post<Pet>(`addPet/`, data);
+      console.log(data.picture);
+
+      const response = await this.instance.post<Pet>(`addPet/`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        timeout: 30000,
+      });
       return { data: response.data };
     } catch (err) {
+      console.log(err);
       return this.handleError(err);
     }
   }

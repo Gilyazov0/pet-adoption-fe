@@ -35,7 +35,7 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
 
   function handleSubmit() {
     const query = getQuery();
-    if (!query) return;
+
     setShowSearch(false);
     navigate(`/Search${query}`);
   }

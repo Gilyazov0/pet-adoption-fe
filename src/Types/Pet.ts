@@ -10,7 +10,7 @@ export type Pet = {
   weight: number;
   color: string;
   bio: string;
-  hypoallergnic: boolean;
+  hypoallergenic: boolean;
   dietary: string;
   breed: string;
   id: number;
