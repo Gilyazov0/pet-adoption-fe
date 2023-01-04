@@ -5,7 +5,7 @@ export type Pet = {
   type: PetType;
   name: string;
   adoptionStatus: AdoptStatus;
-  picture: "";
+  picture?: string;
   height: number;
   weight: number;
   color: string;
@@ -13,7 +13,7 @@ export type Pet = {
   hypoallergenic: boolean;
   dietary: string;
   breed: string;
-  id: number;
+  id?: number;
   ownerId?: number;
 };
 

@@ -3,7 +3,11 @@ import "../../style/PetProfile.css";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const PetCard: React.FC<Pet> = ({ adoptionStatus, name, id, picture }) => {
+const PetCard: React.FC<{ pet: Pet; onClick: Function }> = ({
+  pet,
+  onClick,
+}) => {
+  const { adoptionStatus, name, id, picture } = { ...pet };
   const colorClass =
     adoptionStatus === "Adopted"
       ? "text-success"
@@ -11,7 +15,7 @@ const PetCard: React.FC<Pet> = ({ adoptionStatus, name, id, picture }) => {
       ? "text-warning"
       : "text-danger";
   return (
-    <div className="d-flex">
+    <div className="d-flex" onClick={() => onClick()}>
       <Card>
         <Card.Img
           variant="top"

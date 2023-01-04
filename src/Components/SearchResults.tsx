@@ -25,7 +25,7 @@ const Search: React.FC = () => {
     <>
       {pets ? (
         pets.length > 0 ? (
-          <PetCardsList pets={pets} />
+          <PetCardsList pets={pets} isChangeMode={false} />
         ) : (
           <div className="w-100 text-center mt-5">
             <span className="display-3">Nothing have been found :(</span>

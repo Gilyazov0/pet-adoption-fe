@@ -10,7 +10,7 @@ const SelectStyled: React.FC<{
       return {
         ...baseStyles,
         background: "#ddc5a2",
-        borderColor: "#301b28",
+        borderColor: "#523634",
         color: "#301b28",
       };
     },
@@ -19,10 +19,14 @@ const SelectStyled: React.FC<{
       return {
         ...baseStyles,
         background: "#ddc5a2",
-        borderColor: "#301b28",
+        borderColor: "#523634",
         color: "#301b28",
-        width: "8rem",
-        fill: "red",
+        "min-width": "8rem",
+        "box-shadow": "0 0 0 1px #301b28",
+
+        ":hover": {
+          borderColor: "#523634",
+        },
       };
     },
     option: () => {

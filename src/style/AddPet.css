@@ -4,3 +4,7 @@
   margin: auto;
   margin-top: 2rem;
 }
+
+.selector-container {
+  max-width: 8rem;
+}

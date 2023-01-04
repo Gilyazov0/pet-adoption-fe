@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../App";
-import "../style/MyPets.css";
 import User from "../Types/User";
 import PetCardsList from "./PetsList/PetsList";
 import SelectStyled from "./CommonComponents/SelectStyled";
@@ -26,7 +25,7 @@ const MyPets: React.FC = () => {
         </div>
       </div>
       {pets.length > 0 ? (
-        <PetCardsList pets={pets} />
+        <PetCardsList pets={pets} isChangeMode={false} />
       ) : (
         <div className="w-100 text-center mt-5">
           <span className="display-3">Nothing to show yet :(</span>
