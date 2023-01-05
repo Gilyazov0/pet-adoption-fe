@@ -4,12 +4,13 @@ import "../../style/Select.css";
 const SelectStyled: React.FC<{
   options: { value: string; label: string }[];
   onChange: Function;
-}> = ({ options, onChange }) => {
+  defaultValue?: { value: string; label: string };
+}> = ({ options, onChange, defaultValue }) => {
   const style = {
     menu: (baseStyles: any) => {
       return {
         ...baseStyles,
-        background: "#ddc5a2",
+        background: "white",
         borderColor: "#523634",
         color: "#301b28",
       };
@@ -18,11 +19,11 @@ const SelectStyled: React.FC<{
     control: (baseStyles: any) => {
       return {
         ...baseStyles,
-        background: "#ddc5a2",
+        background: "white",
         borderColor: "#523634",
         color: "#301b28",
-        "min-width": "8rem",
-        "box-shadow": "0 0 0 1px #301b28",
+        minWidth: "8rem",
+        boxShadow: "0 0 0 1px #301b28",
 
         ":hover": {
           borderColor: "#523634",
@@ -41,7 +42,7 @@ const SelectStyled: React.FC<{
   return (
     <Select
       options={options}
-      defaultValue={options[0]}
+      defaultValue={defaultValue ? defaultValue : options[0]}
       styles={style}
       classNamePrefix="react-select"
       onChange={(e) => {

@@ -44,7 +44,6 @@ const PetProfile: React.FC = () => {
           <Card>
             <Card.Body>
               <Card.Title>{`${pet.name}`}</Card.Title>
-              <Card.Text>{`${pet.bio}`}</Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroup.Item>{`Type: ${pet.type}`}</ListGroup.Item>

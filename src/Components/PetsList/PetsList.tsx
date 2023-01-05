@@ -21,7 +21,7 @@ const PetCardsList: React.FC<{ pets: Pet[]; isChangeMode: boolean }> = ({
             isChangeMode
               ? () => {
                   setPet(pet);
-                  navigate("/addPet");
+                  navigate(`/addPet/${pet.id}`);
                 }
               : () => {
                   setPet(pet);

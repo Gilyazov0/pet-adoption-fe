@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   Form,
   FloatingLabel,
@@ -14,6 +14,9 @@ import Message from "./CommonComponents/Message";
 import { MessageType } from "./CommonComponents/Message";
 import SelectStyled from "./CommonComponents/SelectStyled";
 import { AdoptStatus } from "../Types/AdoptStatus";
+import { useParams } from "react-router-dom";
+import { PetContext } from "../App";
+import { PetType } from "../Types/PetsTypes";
 
 const defaultInput: Pet = {
   type: "Cat",
@@ -28,30 +31,37 @@ const defaultInput: Pet = {
   adoptionStatus: "Available",
 };
 
-const AddPet: React.FC<{ initData: Pet | undefined }> = ({ initData }) => {
-  const [formData, setFormData] = useState<Pet>(
-    initData?.type ? initData : defaultInput
-  );
+const AddPet: React.FC = () => {
+  const { id } = useParams();
+  const { pet } = useContext(PetContext);
+
+  // eslint-disable-next-line eqeqeq
+  const initData = id == pet?.id ? pet! : defaultInput;
+  const [formData, setFormData] = useState<Pet>(initData);
 
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
   const [picture, setPicture] = useState<File | undefined>();
-  const [adoptionStatus, setAdoptionStatus] =
-    useState<AdoptStatus>("Available");
+  const [adoptionStatus, setAdoptionStatus] = useState<AdoptStatus>(
+    initData.adoptionStatus
+  );
+  const [type, setType] = useState<PetType>(initData.type);
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
   ) {
+    console.log(e.target.value);
+
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsDisabled(true);
-
+    const data = { ...formData, adoptionStatus, type };
     const response = !formData.id
-      ? await PetApi.addPet({ ...formData, adoptionStatus }, picture)
-      : await PetApi.updatePet({ ...formData, adoptionStatus }, picture);
+      ? await PetApi.addPet(data, picture)
+      : await PetApi.updatePet(data, picture);
     if (response.error) {
       setMsg({ text: response.error, type: "error" });
     } else {
@@ -118,17 +128,40 @@ const AddPet: React.FC<{ initData: Pet | undefined }> = ({ initData }) => {
         <Col>
           <div className="selector-container  mb-3">
             <SelectStyled
+              defaultValue={{ value: type, label: type }}
               options={[
                 { value: "Cat", label: "Cat" },
                 { value: "Dog", label: "Dog" },
                 { value: "Other", label: "Other" },
+              ]}
+              onChange={setType}
+            />
+          </div>
+        </Col>
+        <Col>
+          <div className="selector-container  mb-3">
+            <SelectStyled
+              options={[
+                { value: "Adopted", label: "Adopted" },
+                { value: "Available", label: "Available" },
+                { value: "Fostered", label: "Fostered" },
               ]}
               onChange={setAdoptionStatus}
             />
           </div>
         </Col>
         <Col>
-          <Form.Check type="checkbox" label="Hypoallergnic" className="mb-3" />
+          <div className="input-container">
+            <input
+              type="checkbox"
+              className="custom-checkbox"
+              name="hypoallergenic"
+              onChange={(e) =>
+                setFormData({ ...formData, hypoallergenic: e.target.checked })
+              }
+            />
+            <label className="checkbox-label">Hypoallergenic</label>
+          </div>
         </Col>
       </Row>
       <FloatingLabel label="Dietary" className="mb-3">
@@ -144,7 +177,6 @@ const AddPet: React.FC<{ initData: Pet | undefined }> = ({ initData }) => {
       <FloatingLabel label="Biography" className="mb-3">
         <Form.Control
           style={{ height: "100px" }}
-          required
           name="bio"
           as="textarea"
           placeholder="Biography"
@@ -171,7 +203,7 @@ const AddPet: React.FC<{ initData: Pet | undefined }> = ({ initData }) => {
             setPicture(e.target.files[0]);
         }}
       />
-      <Button className="btn-custom" type="submit" disabled={isDisabled}>
+      <Button className="btn-custom me-2" type="submit" disabled={isDisabled}>
         Submit
       </Button>
       <Message msg={msg} setMsg={setMsg} />

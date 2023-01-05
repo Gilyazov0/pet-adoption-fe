@@ -8,3 +8,19 @@
 .selector-container {
   max-width: 8rem;
 }
+
+.custom-checkbox {
+  width: 30px;
+  height: 30px;
+  accent-color: #b6452c;
+  border: solid 2px #523634;
+  border-radius: 0.5rem;
+}
+
+.checkbox-label {
+  margin-left: 0.8rem;
+}
+.input-container {
+  display: flex;
+  align-items: center;
+}

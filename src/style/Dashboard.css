@@ -1,0 +1,12 @@
+.dashboard {
+  background-color: #523634;
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: calc(100vh - 80px);
+  top: 80px;
+  left: 0;
+  border-right: solid 3px #301b28;
+}

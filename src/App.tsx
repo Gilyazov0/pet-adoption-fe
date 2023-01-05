@@ -13,6 +13,7 @@ import UserProfile from "./Components/UserProfile";
 import AddPet from "./Components/AddPet";
 import ErrorBoundary from "./Components/CommonComponents/ErrorBoundary";
 import Pet from "./Types/Pet";
+import Dashboard from "./Components/Dashboard";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -30,21 +31,30 @@ export const PetContext = createContext<{
 function App() {
   const [user, setUser] = useState<User | null>(null);
   const [pet, setPet] = useState<Pet | null>(null);
+  const [showDashboard, setShowDashboard] = useState<boolean>(false);
+
   useUserChange();
 
   return (
-    <div className="App">
+    <div className={`App ${showDashboard ? "margin-left-300" : ""}`}>
       <ErrorBoundary>
         <UserContext.Provider value={{ user, setUser }}>
           <PetContext.Provider value={{ pet, setPet }}>
-            <NavBar />
+            <NavBar
+              setShowDashboard={setShowDashboard}
+              showDashboard={showDashboard}
+            />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/search" element={<Search />} />
+              <Route
+                path="/search/:mode"
+                element={<Search isChangeMode={false} />}
+              />
               <Route path="/userProfile" element={<UserProfile />} />
-              <Route path="/addPet" element={<AddPet initData={undefined} />} />
+              <Route path="/addPet/:id" element={<AddPet />} />
               <Route path="/myPets" element={<MyPets />} />
               <Route path="/profile/:id" element={<PetProfile />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
           </PetContext.Provider>
         </UserContext.Provider>

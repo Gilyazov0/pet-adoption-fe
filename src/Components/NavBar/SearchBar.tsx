@@ -1,12 +1,13 @@
 import { Accordion, Button, Form } from "react-bootstrap";
 import "../../style/SearchBar.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
 const SearchBar: React.FC<{ setShowSearch: Function }> = ({
   setShowSearch,
 }) => {
   const navigate = useNavigate();
+  const { mode } = useParams();
 
   const [searchParams, setSearchParams] = useState({
     name: "",
@@ -37,13 +38,11 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
     const query = getQuery();
 
     setShowSearch(false);
-    navigate(`/Search${query}`);
+    navigate(`/Search/${mode === "edit" ? "edit" : "show"}${query}`);
   }
 
   return (
     <>
-      <div className="label">Search for a friend</div>
-
       <Accordion className="m-3">
         <Accordion.Item eventKey="0">
           <Accordion.Header>

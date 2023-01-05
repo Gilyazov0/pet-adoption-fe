@@ -32,7 +32,10 @@ export default class PetApi extends AppApi {
     }
   }
 
-  public static async updatePet(data: Pet, picture: File | undefined) {
+  public static async updatePet(
+    data: Pet,
+    picture: File | undefined
+  ): ApiResponse<Pet> {
     try {
       const response = await this.instance.post<Pet>(
         `updatePet/`,
@@ -51,7 +54,10 @@ export default class PetApi extends AppApi {
     }
   }
 
-  public static async addPet(data: Pet, picture: File | undefined) {
+  public static async addPet(
+    data: Pet,
+    picture: File | undefined
+  ): ApiResponse<Pet> {
     try {
       const response = await this.instance.post<Pet>(
         `addPet/`,

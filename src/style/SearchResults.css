@@ -1,0 +1,13 @@
+.left-pane {
+  width: 300px;
+  border-right: 2px solid;
+  margin-right: 1rem;
+  height: calc(100vh - 80px);
+  position: static;
+  top: 80px;
+  position: fixed;
+}
+
+.search-results {
+  margin-left: 320px;
+}

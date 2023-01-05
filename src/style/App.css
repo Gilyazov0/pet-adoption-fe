@@ -5,6 +5,10 @@ body {
   color: #301b28;
 }
 
+.margin-left-300 {
+  margin-left: 300px;
+}
+
 .modal-content {
   background-color: #ddc5a2;
   border-color: #ddc5a2;
@@ -56,16 +60,16 @@ a:hover {
 
 .form-control {
   border: solid 2px #523634;
-  background-color: #ddc5a2;
+  /* background-color: #ddc5a2; */
 }
 
 .form-control:focus {
   border-color: #b6452c;
   box-shadow: inset 0 1px 1px #b6452c;
-  background-color: #ddc5a2;
+  /* background-color: #ddc5a2; */
 }
 
 .form-check-input {
-  background-color: #ddc5a2;
+  /* background-color: #ddc5a2; */
   border: solid 2px #523634;
 }

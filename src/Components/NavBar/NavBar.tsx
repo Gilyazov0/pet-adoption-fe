@@ -1,13 +1,16 @@
 import { useState, useContext } from "react";
-import { Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../style/NavBar.css";
 import Auth from "../Auth/Auth";
 import SearchBarModal from "./SearchBarModal";
 import { UserContext } from "../../App";
 import UserApi from "../../lib/userApi";
+import Dashboard from "../Dashboard";
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC<{
+  showDashboard: boolean;
+  setShowDashboard: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ showDashboard, setShowDashboard }) => {
   const { user, setUser } = useContext(UserContext);
   const [showAuth, setShowAuth] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
@@ -33,11 +36,16 @@ const NavBar: React.FC = () => {
           <div className="label">Profile</div>
         </Link>
       )}
-      {user && (
-        <Link to={"/addPet"} className={"no-underline"}>
-          <div className="label">Add pet</div>
-        </Link>
+
+      {user && user.isAdmin && (
+        <div
+          className="label"
+          onClick={() => setShowDashboard((prev) => !prev)}
+        >
+          Dashboard
+        </div>
       )}
+      {showDashboard && <Dashboard />}
 
       <div
         className="label"
