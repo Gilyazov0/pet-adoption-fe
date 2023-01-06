@@ -24,6 +24,7 @@ const Search: React.FC<{ isChangeMode: boolean }> = ({ isChangeMode }) => {
     }
 
     getSearchResults();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
   return (
     <div className="d-flex">

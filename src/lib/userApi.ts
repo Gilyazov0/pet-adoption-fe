@@ -1,5 +1,5 @@
 import User from "../Types/User";
-import axios, { AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
 import AppApi from "./abstractApi";
 import ApiResponse from "../Types/ApiResponse";
 

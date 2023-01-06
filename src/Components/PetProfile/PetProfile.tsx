@@ -2,27 +2,25 @@ import "../../style/PetProfile.css";
 import { Card, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import PetApi from "../../lib/petApi";
-import { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../App";
+import { useContext, useEffect } from "react";
+import { PetContext, UserContext } from "../../App";
 import SavePetButton from "./SavePetButton";
 import AdoptPetButton from "./AdoptPetButton";
 import FosterPetButton from "./FosterPetButton";
-import Pet from "../../Types/Pet";
 import Loading from "../CommonComponents/Loading";
 
 const PetProfile: React.FC = () => {
   const { id } = useParams();
   const { user } = useContext(UserContext);
-
-  const [pet, setPet] = useState<Pet | undefined>(undefined);
+  const { pet, setPet } = useContext(PetContext);
 
   useEffect(() => {
     async function getProfilePet() {
       const res = await PetApi.getPetById(id!);
       if (res.data) setPet(res.data);
     }
-    getProfilePet();
-  }, [id, user]);
+    if (!pet || pet.id !== id) getProfilePet();
+  }, [id, pet, setPet]);
 
   const colorClass =
     pet?.adoptionStatus === "Adopted"

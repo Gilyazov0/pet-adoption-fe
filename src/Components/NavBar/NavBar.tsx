@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../style/NavBar.css";
 import Auth from "../Auth/Auth";
@@ -15,6 +15,10 @@ const NavBar: React.FC<{
   const [showAuth, setShowAuth] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (!user || !user.isAdmin) setShowDashboard(false);
+  }, [setShowDashboard, user]);
+
   return (
     <div className="nav-bar">
       <Link to={"/"} className={"no-underline"}>
@@ -26,15 +30,15 @@ const NavBar: React.FC<{
       </div>
 
       {user && (
-        <Link to={"/myPets"} className={"no-underline"}>
-          <div className="label">My pets</div>
-        </Link>
-      )}
+        <>
+          <Link to={"/myPets"} className={"no-underline"}>
+            <div className="label">My pets</div>
+          </Link>
 
-      {user && (
-        <Link to={"/userProfile"} className={"no-underline"}>
-          <div className="label">Profile</div>
-        </Link>
+          <Link to={"/userProfile"} className={"no-underline"}>
+            <div className="label">Profile</div>
+          </Link>
+        </>
       )}
 
       {user && user.isAdmin && (

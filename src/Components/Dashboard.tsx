@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Dashboard.css";
 const Dashboard: React.FC = () => {
