@@ -12,6 +12,10 @@ const Dashboard: React.FC = () => {
         <Link to={"/search/edit"} className={"no-underline"}>
           <div className="label mt-3">Edit pet</div>
         </Link>
+
+        <Link to={"/userList"} className={"no-underline"}>
+          <div className="label mt-3">User list</div>
+        </Link>
       </div>
     </>
   );

@@ -65,7 +65,10 @@ const AddPet: React.FC = () => {
     if (response.error) {
       setMsg({ text: response.error, type: "error" });
     } else {
-      setMsg({ text: "Pet is added to database", type: "success" });
+      setMsg({
+        text: id === "new" ? "Pet is added to database" : "Pet data edited",
+        type: "success",
+      });
     }
     setIsDisabled(false);
   }

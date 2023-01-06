@@ -14,6 +14,7 @@ import AddPet from "./Components/AddPet";
 import ErrorBoundary from "./Components/CommonComponents/ErrorBoundary";
 import Pet from "./Types/Pet";
 import Dashboard from "./Components/Dashboard";
+import UserList from "./Components/UserList/UserList";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -54,7 +55,7 @@ function App() {
               <Route path="/addPet/:id" element={<AddPet />} />
               <Route path="/myPets" element={<MyPets />} />
               <Route path="/profile/:id" element={<PetProfile />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/userList" element={<UserList />} />
             </Routes>
           </PetContext.Provider>
         </UserContext.Provider>

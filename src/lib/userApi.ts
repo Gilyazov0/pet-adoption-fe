@@ -17,7 +17,16 @@ export default class UserApi extends AppApi {
   ): ApiResponse<User> {
     try {
       const data = { email, firstName, lastName, phone, bio, password };
-      const response = await axios.patch<User>("", data);
+      const response = await this.instance.patch<User>("", data);
+      return { data: response.data };
+    } catch (err) {
+      return this.handleError(err);
+    }
+  }
+
+  public static async getAllUsers(): ApiResponse<User[]> {
+    try {
+      const response = await this.instance.get<User[]>("/allUsers");
       return { data: response.data };
     } catch (err) {
       return this.handleError(err);
