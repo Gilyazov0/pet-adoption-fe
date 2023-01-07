@@ -15,7 +15,7 @@ const PetCard: React.FC<{ pet: Pet; onClick: Function }> = ({
       ? "text-warning"
       : "text-danger";
   return (
-    <div className="d-flex" onClick={() => onClick()}>
+    <div className="d-flex pointer" onClick={() => onClick()}>
       <Card>
         <Card.Img
           variant="top"

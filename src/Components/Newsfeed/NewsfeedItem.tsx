@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { EventMsg, EventType } from "../../Types/EventMsg";
-import "../../style/NewsfeedItem.css";
 
 function getLabel(eventType: EventType) {
   switch (eventType) {
@@ -26,11 +25,12 @@ const NewsfeedItem: React.FC<{ event: EventMsg; row: number }> = ({
       <th scope="row"> {row} </th>
       <td>{getLabel(type)}</td>
       <td
+        className="pointer"
         onClick={() => {
           navigate(`/userDetails/${author.id}`);
         }}
       >{`${author.firstName} ${author.lastName} (id: ${author.id})`}</td>
-      <td>{new Date(time).toUTCString()}</td>
+      <td>{new Date(time).toLocaleString()}</td>
       <td
         className="pointer"
         onClick={() => {

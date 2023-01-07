@@ -5,6 +5,10 @@ body {
   color: #301b28;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .margin-dashboard {
   margin-left: 150px;
 }
@@ -60,16 +64,13 @@ a:hover {
 
 .form-control {
   border: solid 2px #523634;
-  /* background-color: #ddc5a2; */
 }
 
 .form-control:focus {
   border-color: #b6452c;
   box-shadow: inset 0 1px 1px #b6452c;
-  /* background-color: #ddc5a2; */
 }
 
 .form-check-input {
-  /* background-color: #ddc5a2; */
   border: solid 2px #523634;
 }
