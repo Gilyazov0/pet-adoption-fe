@@ -3,8 +3,8 @@ import AppApi from "./abstractApi";
 import ApiResponse from "../Types/ApiResponse";
 
 export default class PetApi extends AppApi {
-  static BASE_URL = `${super.BASE_URL}pet/`;
-  static instance = this.getAxiosInstance();
+  protected static BASE_URL = `${super.BASE_URL}pet/`;
+  protected static instance = this.getAxiosInstance();
 
   public static async getPetById(id: string): ApiResponse<Pet> {
     try {
@@ -39,7 +39,7 @@ export default class PetApi extends AppApi {
     try {
       const response = await this.instance.post<Pet>(
         `updatePet/`,
-        { ...data, picture },
+        { data: { ...data }, picture },
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -61,7 +61,7 @@ export default class PetApi extends AppApi {
     try {
       const response = await this.instance.post<Pet>(
         `addPet/`,
-        { ...data, picture },
+        { data: { ...data }, picture },
         {
           headers: {
             "Content-Type": "multipart/form-data",

@@ -4,14 +4,15 @@ const UserItem: React.FC<{ user: User; row: number; onClick: Function }> = ({
   row,
   onClick,
 }) => {
+  const { id, email, firstName, lastName, isAdmin, pets, phone } = user;
   return (
-    <tr key={user.id} onClick={() => onClick(user)}>
+    <tr key={id} onClick={() => onClick(user)}>
       <th scope="row"> {row} </th>
-      <td>{`${user.firstName} ${user.lastName}`}</td>
-      <td>{user.email}</td>
-      <td>{user.phone ? user.phone : "-"}</td>
-      <td>{user.pets.length}</td>
-      <td>{user.isAdmin.toString()}</td>
+      <td>{`${firstName} ${lastName}`}</td>
+      <td>{email}</td>
+      <td>{phone ? phone : "-"}</td>
+      <td>{pets.length}</td>
+      <td>{isAdmin.toString()}</td>
     </tr>
   );
 };

@@ -10,10 +10,10 @@ import User from "./Types/User";
 import MyPets from "./Components/MyPets";
 import UserProfile from "./Components/UserProfile";
 import AddPet from "./Components/AddPet";
-import ErrorBoundary from "./Components/CommonComponents/ErrorBoundary";
 import Pet from "./Types/Pet";
 import UserList from "./Components/UserList/UserList";
 import PrivateRoute from "./Components/PrivateRoute";
+import Newsfeed from "./Components/Newsfeed/Newsfeed";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -35,66 +35,65 @@ function App() {
 
   return (
     <div className={`App ${showDashboard ? "margin-dashboard" : ""}`}>
-      <ErrorBoundary>
-        <UserContext.Provider value={{ user, setUser }}>
-          <PetContext.Provider value={{ pet, setPet }}>
-            <NavBar
-              setShowDashboard={setShowDashboard}
-              showDashboard={showDashboard}
+      <UserContext.Provider value={{ user, setUser }}>
+        <PetContext.Provider value={{ pet, setPet }}>
+          <NavBar
+            setShowDashboard={setShowDashboard}
+            showDashboard={showDashboard}
+          />
+          <Routes>
+            <Route path="/" element={<Home />} />
+
+            <Route
+              path="/search/:mode"
+              element={<Search isChangeMode={false} />}
             />
-            <Routes>
-              <Route path="/" element={<Home />} />
+            <Route path="/profile/:id" element={<PetProfile />} />
 
-              <Route
-                path="/search/:mode"
-                element={<Search isChangeMode={false} />}
-              />
+            <Route
+              path="/userProfile"
+              element={
+                <PrivateRoute mode="user">
+                  <UserProfile />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/myPets"
+              element={
+                <PrivateRoute mode="user">
+                  <MyPets />
+                </PrivateRoute>
+              }
+            />
 
-              <Route
-                path="/userProfile"
-                element={
-                  <PrivateRoute mode="user">
-                    <UserProfile />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/myPets"
-                element={
-                  <PrivateRoute mode="user">
-                    <MyPets />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/profile/:id"
-                element={
-                  <PrivateRoute mode="user">
-                    <PetProfile />
-                  </PrivateRoute>
-                }
-              />
-
-              <Route
-                path="/addPet/:id"
-                element={
-                  <PrivateRoute mode="admin">
-                    <AddPet />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/userList"
-                element={
-                  <PrivateRoute mode="admin">
-                    <UserList />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
-          </PetContext.Provider>
-        </UserContext.Provider>
-      </ErrorBoundary>
+            <Route
+              path="/addPet/:id"
+              element={
+                <PrivateRoute mode="admin">
+                  <AddPet />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/userList"
+              element={
+                <PrivateRoute mode="admin">
+                  <UserList />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/newsfeed"
+              element={
+                <PrivateRoute mode="admin">
+                  <Newsfeed />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </PetContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }

@@ -34,7 +34,6 @@ const defaultInput: Pet = {
 const AddPet: React.FC = () => {
   const { id } = useParams();
   const { pet } = useContext(PetContext);
-
   // eslint-disable-next-line eqeqeq
   const initData = id == pet?.id ? pet! : defaultInput;
   const [formData, setFormData] = useState<Pet>(initData);
@@ -50,8 +49,6 @@ const AddPet: React.FC = () => {
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
   ) {
-    console.log(e.target.value);
-
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
@@ -144,9 +141,10 @@ const AddPet: React.FC = () => {
         <Col>
           <div className="selector-container  mb-3">
             <SelectStyled
+              defaultValue={{ value: adoptionStatus, label: adoptionStatus }}
               options={[
-                { value: "Adopted", label: "Adopted" },
                 { value: "Available", label: "Available" },
+                { value: "Adopted", label: "Adopted" },
                 { value: "Fostered", label: "Fostered" },
               ]}
               onChange={setAdoptionStatus}

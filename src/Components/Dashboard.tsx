@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "../style/Dashboard.css";
+import Newsfeed from "./Newsfeed/Newsfeed";
 const Dashboard: React.FC = () => {
   return (
     <>
@@ -14,6 +15,9 @@ const Dashboard: React.FC = () => {
 
         <Link to={"/userList"} className={"no-underline"}>
           <div className="label mt-3">User list</div>
+        </Link>
+        <Link to={"/Newsfeed"} className={"no-underline"}>
+          <div className="label mt-3">Newsfeed</div>
         </Link>
       </div>
     </>

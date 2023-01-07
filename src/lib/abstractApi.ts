@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosInstance } from "axios";
 
 export default class AppApi {
-  static tokenKey: string = "pet-app-token";
-  static BASE_URL: string = import.meta.env.VITE_API_BASE_URL;
-  static instance: AxiosInstance;
+  protected static tokenKey: string = "pet-app-token";
+  protected static BASE_URL: string = import.meta.env.VITE_API_BASE_URL;
+  protected static instance: AxiosInstance;
 
   protected static getAxiosInstance() {
     const token = this.getToken();
