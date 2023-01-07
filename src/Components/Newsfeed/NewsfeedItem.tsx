@@ -25,7 +25,11 @@ const NewsfeedItem: React.FC<{ event: EventMsg; row: number }> = ({
     <tr key={id}>
       <th scope="row"> {row} </th>
       <td>{getLabel(type)}</td>
-      <td>{`${author.firstName} ${author.lastName} (id: ${author.id})`}</td>
+      <td
+        onClick={() => {
+          navigate(`/userDetails/${author.id}`);
+        }}
+      >{`${author.firstName} ${author.lastName} (id: ${author.id})`}</td>
       <td>{new Date(time).toUTCString()}</td>
       <td
         className="pointer"

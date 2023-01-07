@@ -14,6 +14,7 @@ import Pet from "./Types/Pet";
 import UserList from "./Components/UserList/UserList";
 import PrivateRoute from "./Components/PrivateRoute";
 import Newsfeed from "./Components/Newsfeed/Newsfeed";
+import UserDetails from "./Components/UserDetails";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -88,6 +89,14 @@ function App() {
               element={
                 <PrivateRoute mode="admin">
                   <Newsfeed />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/userDetails/:id"
+              element={
+                <PrivateRoute mode="admin">
+                  <UserDetails />
                 </PrivateRoute>
               }
             />

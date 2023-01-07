@@ -35,6 +35,15 @@ export default class UserApi extends AppApi {
     }
   }
 
+  public static async getUserById(id: number): ApiResponse<User> {
+    try {
+      const response = await this.instance.get<User>("/", { params: { id } });
+      return { data: response.data };
+    } catch (err) {
+      return this.handleError(err);
+    }
+  }
+
   public static async login(
     email: string,
     password: string

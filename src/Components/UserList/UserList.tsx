@@ -3,14 +3,13 @@ import User from "../../Types/User";
 import UserApi from "../../lib/userApi";
 import Message, { MessageType } from "../CommonComponents/Message";
 import UserItem from "./UserItem";
-import UserDetails from "./UserDetails";
+import { useNavigate } from "react-router-dom";
 
 const UserList: React.FC = () => {
   const [users, setUsers] = useState<User[] | undefined>(undefined);
-  const [showUserDetails, setShowUserDetails] = useState<User | undefined>(
-    undefined
-  );
   const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getAllUsers() {
@@ -27,33 +26,27 @@ const UserList: React.FC = () => {
       key={user.id}
       row={i + 1}
       user={user}
-      onClick={setShowUserDetails}
+      onClick={() => navigate(`/userDetails/${user.id}`)}
     />
   ));
 
   return (
-    <div>
-      {showUserDetails ? (
-        <UserDetails user={showUserDetails} />
-      ) : (
-        <>
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name </th>
-                <th scope="col">Email </th>
-                <th scope="col">Phone</th>
-                <th scope="col">Pets number</th>
-                <th scope="col">Is admin</th>
-              </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-          </table>
-          <Message msg={msg} setMsg={setMsg} />
-        </>
-      )}
-    </div>
+    <>
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name </th>
+            <th scope="col">Email </th>
+            <th scope="col">Phone</th>
+            <th scope="col">Pets number</th>
+            <th scope="col">Is admin</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+      <Message msg={msg} setMsg={setMsg} />
+    </>
   );
 };
 
