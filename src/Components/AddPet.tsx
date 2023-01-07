@@ -147,7 +147,15 @@ const AddPet: React.FC = () => {
                 { value: "Adopted", label: "Adopted" },
                 { value: "Fostered", label: "Fostered" },
               ]}
-              onChange={setAdoptionStatus}
+              onChange={(e: any) => {
+                setAdoptionStatus(e);
+                if (id !== "new") {
+                  setMsg({
+                    text: "Adoption status could be changed to 'Available' only",
+                    type: "success",
+                  });
+                }
+              }}
             />
           </div>
         </Col>
