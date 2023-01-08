@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../style/NavBar.css";
 import Auth from "../Auth/Auth";
 import SearchBarModal from "./SearchBarModal";
-import { UserContext } from "../../App";
+import { UserContext, NewPetsContext } from "../../App";
 import Dashboard from "../Dashboard";
 
 const NavBar: React.FC<{
@@ -13,6 +13,7 @@ const NavBar: React.FC<{
   const { user, setUser } = useContext(UserContext);
   const [showAuth, setShowAuth] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
+  const { setNewAvailablePets, setNewPets } = useContext(NewPetsContext);
 
   const navigate = useNavigate();
 
@@ -56,6 +57,8 @@ const NavBar: React.FC<{
         className="label"
         onClick={() => {
           if (user) {
+            setNewAvailablePets([]);
+            setNewPets([]);
             setUser(null);
             navigate("/");
           } else setShowAuth(true);

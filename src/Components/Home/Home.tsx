@@ -3,40 +3,39 @@ import "../../style/Home.css";
 import { useContext, useEffect, useState } from "react";
 import { UserContext, NewPetsContext } from "../../App";
 import NewPets from "./NewPets";
+import NewPetsMsg from "./NewPetsMsg";
+import NewAvailablePetsMsg from "./NewAvailablePetsMsg";
 
 const Home: React.FC = () => {
   const { user } = useContext(UserContext);
   const [showNewPets, setShowNewPets] = useState<boolean>(false);
-  const { newPets } = useContext(NewPetsContext);
-  console.log(newPets);
+  const { newPets, newAvailablePets } = useContext(NewPetsContext);
+  console.log(newAvailablePets);
 
   useEffect(() => {
-    if (newPets.length === 0) setShowNewPets(false);
-  }, [newPets]);
+    if (newPets.length === 0 && newAvailablePets.length === 0)
+      setShowNewPets(false);
+  }, [newPets, newAvailablePets]);
 
   return (
     <div className="App">
       <div className="home">
         <div className="img">
           {showNewPets ? (
-            <NewPets pets={newPets!} />
+            <NewPets pets={newPets.concat(newAvailablePets)} />
           ) : (
             <div className="title">
               {user ? (
                 <div className="d-flex flex-column">
                   <div>{`Welcome back, ${user.firstName} ${user.lastName}!`}</div>
-                  {newPets.length > 0 && (
-                    <div
-                      className="pointer"
-                      onClick={() => setShowNewPets(true)}
-                    >
-                      <span>We've got</span>
-                      <span className="text-red">{` ${newPets.length} `}</span>
-                      <span>
-                        {`new pet${newPets.length > 1 ? "s" : ""} for you`}.
-                      </span>
-                    </div>
-                  )}
+
+                  <div
+                    className="pointer d-flex flex-column"
+                    onClick={() => setShowNewPets(true)}
+                  >
+                    <NewPetsMsg num={newPets.length} />
+                    <NewAvailablePetsMsg num={newAvailablePets.length} />
+                  </div>
                 </div>
               ) : (
                 "Standing up for animals since... just about to start"

@@ -50,26 +50,26 @@ export default class UserApi extends AppApi {
   public static async login(
     email: string,
     password: string
-  ): ApiResponse<{ user: User; newPets: Pet[] }> {
+  ): ApiResponse<{ user: User; newPets: Pet[]; newAvailablePets: Pet[] }> {
     try {
       const data = { data: { email, password } };
       const response = await this.instance.post<{
         user: User;
         newPets: Pet[];
+        newAvailablePets: Pet[];
       }>(`login`, data);
-      console.log(response.data);
 
       return {
-        data: { user: response.data.user, newPets: response.data.newPets },
+        data: {
+          user: response.data.user,
+          newPets: response.data.newPets,
+          newAvailablePets: response.data.newAvailablePets,
+        },
       };
     } catch (err) {
       console.log(err);
       return this.handleError(err);
     }
-  }
-
-  public static logout() {
-    this.removeToken();
   }
 
   public static async createUser(

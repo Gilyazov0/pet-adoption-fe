@@ -32,19 +32,34 @@ export const PetContext = createContext<{
 export const NewPetsContext = createContext<{
   newPets: Pet[];
   setNewPets: React.Dispatch<React.SetStateAction<Pet[]>>;
-}>({ newPets: [], setNewPets: () => {} });
+  newAvailablePets: Pet[];
+  setNewAvailablePets: React.Dispatch<React.SetStateAction<Pet[]>>;
+}>({
+  newPets: [],
+  setNewPets: () => {},
+  newAvailablePets: [],
+  setNewAvailablePets: () => {},
+});
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
   const [pet, setPet] = useState<Pet | null>(null);
   const [newPets, setNewPets] = useState<Pet[]>([]);
+  const [newAvailablePets, setNewAvailablePets] = useState<Pet[]>([]);
   const [showDashboard, setShowDashboard] = useState<boolean>(false);
 
   return (
     <div className={`App ${showDashboard ? "margin-dashboard" : ""}`}>
       <UserContext.Provider value={{ user, setUser }}>
         <PetContext.Provider value={{ pet, setPet }}>
-          <NewPetsContext.Provider value={{ newPets, setNewPets }}>
+          <NewPetsContext.Provider
+            value={{
+              newPets,
+              setNewPets,
+              newAvailablePets,
+              setNewAvailablePets,
+            }}
+          >
             <NavBar
               setShowDashboard={setShowDashboard}
               showDashboard={showDashboard}

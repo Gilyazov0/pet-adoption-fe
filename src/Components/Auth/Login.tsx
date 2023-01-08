@@ -16,7 +16,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
   const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
 
   const { setUser } = useContext(UserContext);
-  const { setNewPets } = useContext(NewPetsContext);
+  const { setNewPets, setNewAvailablePets } = useContext(NewPetsContext);
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
@@ -32,7 +32,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
     if (response.data) {
       setUser(response.data.user);
       setNewPets(response.data.newPets);
-      console.log(response.data.newPets);
+      setNewAvailablePets(response.data.newAvailablePets);
       setShowAuth(false);
     }
   }
