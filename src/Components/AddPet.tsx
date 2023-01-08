@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   Form,
   FloatingLabel,
@@ -45,6 +45,11 @@ const AddPet: React.FC = () => {
     initData.adoptionStatus
   );
   const [type, setType] = useState<PetType>(initData.type);
+
+  useEffect(() => {
+    const initData = id == pet?.id ? pet! : defaultInput;
+    setFormData(initData);
+  }, [id, pet]);
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }

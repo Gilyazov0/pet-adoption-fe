@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../style/NavBar.css";
-import Auth from "../Auth/Auth";
+import Auth from "./Auth/Auth";
 import SearchBarModal from "./SearchBarModal";
 import { UserContext, NewPetsContext } from "../../App";
 import Dashboard from "../Dashboard";
@@ -54,7 +54,7 @@ const NavBar: React.FC<{
       {showDashboard && <Dashboard />}
 
       <div
-        className="label"
+        className="label me-3"
         onClick={() => {
           if (user) {
             setNewAvailablePets([]);

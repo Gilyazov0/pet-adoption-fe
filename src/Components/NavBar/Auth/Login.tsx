@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
-import { UserContext, NewPetsContext } from "../../App";
-import UserApi from "../../lib/userApi";
-import Message, { MessageType } from "../CommonComponents/Message";
+import { UserContext, NewPetsContext } from "../../../App";
+import UserApi from "../../../lib/userApi";
+import Message, { MessageType } from "../../CommonComponents/Message";
 
 interface Props {
   setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
