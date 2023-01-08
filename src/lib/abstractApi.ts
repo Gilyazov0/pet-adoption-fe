@@ -4,10 +4,13 @@ export default class AppApi {
   protected static tokenKey: string = "pet-app-token";
   protected static BASE_URL: string = import.meta.env.VITE_API_BASE_URL;
   protected static instance: AxiosInstance;
+  protected static token: string;
 
   protected static getAxiosInstance() {
     const token = this.getToken();
+    console.log(token);
     return axios.create({
+      withCredentials: true,
       baseURL: this.BASE_URL,
       timeout: 5000,
       headers: {
@@ -23,12 +26,14 @@ export default class AppApi {
   }
 
   protected static getToken() {
+    // return this.token;
     return localStorage.getItem(this.tokenKey);
   }
 
   protected static setToken(token?: string) {
     if (token) {
       localStorage.setItem(this.tokenKey, token);
+      this.token = token;
       this.instance = this.getAxiosInstance();
     }
   }
