@@ -10,7 +10,6 @@ const Home: React.FC = () => {
   const { user } = useContext(UserContext);
   const [showNewPets, setShowNewPets] = useState<boolean>(false);
   const { newPets, newAvailablePets } = useContext(NewPetsContext);
-  console.log(newAvailablePets);
 
   useEffect(() => {
     if (newPets.length === 0 && newAvailablePets.length === 0)

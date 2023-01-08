@@ -17,9 +17,14 @@
   user-select: none;
   font-size: 2rem;
   margin: 0 1rem;
+
+  transform: perspective(100px) translateZ(0px);
+  transition: transform 200ms linear;
 }
+
 .label:hover {
   cursor: pointer;
+  transform: perspective(100px) translateZ(10px);
 }
 
 .no-underline {

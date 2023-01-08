@@ -67,7 +67,6 @@ export default class UserApi extends AppApi {
         },
       };
     } catch (err) {
-      console.log(err);
       return this.handleError(err);
     }
   }

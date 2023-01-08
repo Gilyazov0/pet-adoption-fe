@@ -49,7 +49,6 @@ export default class PetApi extends AppApi {
       );
       return { data: response.data };
     } catch (err) {
-      console.log(err);
       return this.handleError(err);
     }
   }
@@ -71,7 +70,6 @@ export default class PetApi extends AppApi {
       );
       return { data: response.data };
     } catch (err) {
-      console.log(err);
       return this.handleError(err);
     }
   }

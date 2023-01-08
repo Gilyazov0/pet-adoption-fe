@@ -14,8 +14,14 @@ export default class AppApi {
   }
 
   protected static handleError(err: unknown) {
+    const mode = import.meta.env.MODE;
+    console.log(mode);
+
+    if (mode === "development ") console.log(err);
     if (err instanceof AxiosError)
-      return { error: err.response ? err.response.data.message : err.message };
+      return {
+        error: err.response ? err.response.data.message : err.message,
+      };
     else return { error: "unknown error" };
   }
 }

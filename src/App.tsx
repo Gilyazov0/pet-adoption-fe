@@ -12,9 +12,9 @@ import UserProfile from "./Components/UserProfile";
 import AddPet from "./Components/AddPet";
 import Pet from "./Types/Pet";
 import UserList from "./Components/UserList/UserList";
-import PrivateRoute from "./Components/PrivateRoute";
 import Newsfeed from "./Components/Newsfeed/Newsfeed";
 import UserDetails from "./Components/UserDetails";
+import PrivateRoutes from "./Components/PrivateRoutes";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -73,55 +73,17 @@ function App() {
               />
               <Route path="/profile/:id" element={<PetProfile />} />
 
-              <Route
-                path="/userProfile"
-                element={
-                  <PrivateRoute mode="user">
-                    <UserProfile />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/myPets"
-                element={
-                  <PrivateRoute mode="user">
-                    <MyPets />
-                  </PrivateRoute>
-                }
-              />
+              <Route element={<PrivateRoutes mode="user" />}>
+                <Route path="/userProfile" element={<UserProfile />} />
+                <Route path="/myPets" element={<MyPets />} />
+              </Route>
 
-              <Route
-                path="/addPet/:id"
-                element={
-                  <PrivateRoute mode="admin">
-                    <AddPet />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/userList"
-                element={
-                  <PrivateRoute mode="admin">
-                    <UserList />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/newsfeed"
-                element={
-                  <PrivateRoute mode="admin">
-                    <Newsfeed />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/userDetails/:id"
-                element={
-                  <PrivateRoute mode="admin">
-                    <UserDetails />
-                  </PrivateRoute>
-                }
-              />
+              <Route element={<PrivateRoutes mode="admin" />}>
+                <Route path="/addPet/:id" element={<AddPet />} />
+                <Route path="/userList" element={<UserList />} />
+                <Route path="/newsfeed" element={<Newsfeed />} />
+                <Route path="/userDetails/:id" element={<UserDetails />} />
+              </Route>
             </Routes>
           </NewPetsContext.Provider>
         </PetContext.Provider>
