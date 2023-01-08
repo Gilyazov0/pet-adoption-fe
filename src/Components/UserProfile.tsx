@@ -48,6 +48,7 @@ const UserProfile: React.FC = () => {
       lastName,
       phone,
       bio,
+      user!.id,
       password ? password : undefined
     );
 
@@ -55,8 +56,8 @@ const UserProfile: React.FC = () => {
       setMsg({ text: response.error, type: "error" });
       return;
     }
-
     setUser(response.data!);
+    setMsg({ text: "Data updated", type: "success" });
   }
 
   return (

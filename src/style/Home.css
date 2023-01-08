@@ -15,3 +15,7 @@
 .home {
   height: calc(100vh - 80px);
 }
+
+.text-red {
+  color: #b6452c;
+}

@@ -2,6 +2,7 @@ import User from "../Types/User";
 import { AxiosInstance } from "axios";
 import AppApi from "./abstractApi";
 import ApiResponse from "../Types/ApiResponse";
+import Pet from "../Types/Pet";
 
 export default class UserApi extends AppApi {
   protected static BASE_URL = `${super.BASE_URL}user/`;
@@ -13,13 +14,15 @@ export default class UserApi extends AppApi {
     lastName: string,
     phone: string,
     bio: string,
+    userId: number,
     password?: string
   ): ApiResponse<User> {
     try {
       const data = {
         data: { email, firstName, lastName, phone, bio, password },
+        userId,
       };
-      const response = await this.instance.patch<User>("", data);
+      const response = await this.instance.patch<User>("", { data: data });
       return { data: response.data };
     } catch (err) {
       return this.handleError(err);
@@ -47,17 +50,18 @@ export default class UserApi extends AppApi {
   public static async login(
     email: string,
     password: string
-  ): ApiResponse<User> {
+  ): ApiResponse<{ user: User; newPets: Pet[] }> {
     try {
       const data = { data: { email, password } };
-      const response = await this.instance.post<{ user: User; token: string }>(
-        `login`,
-        data
-      );
+      const response = await this.instance.post<{
+        user: User;
+        newPets: Pet[];
+      }>(`login`, data);
+      console.log(response.data);
 
-      this.setToken(response.data.token);
-
-      return { data: response.data.user };
+      return {
+        data: { user: response.data.user, newPets: response.data.newPets },
+      };
     } catch (err) {
       console.log(err);
       return this.handleError(err);

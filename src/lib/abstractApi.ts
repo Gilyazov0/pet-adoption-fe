@@ -8,7 +8,6 @@ export default class AppApi {
 
   protected static getAxiosInstance() {
     const token = this.getToken();
-    console.log(token);
     return axios.create({
       withCredentials: true,
       baseURL: this.BASE_URL,

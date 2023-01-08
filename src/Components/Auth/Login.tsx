@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
-import { UserContext } from "../../App";
+import { UserContext, NewPetsContext } from "../../App";
 import UserApi from "../../lib/userApi";
 import Message, { MessageType } from "../CommonComponents/Message";
 
@@ -16,6 +16,7 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
   const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
 
   const { setUser } = useContext(UserContext);
+  const { setNewPets } = useContext(NewPetsContext);
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
@@ -29,7 +30,9 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
       setMsg({ text: response.error, type: "error" });
     }
     if (response.data) {
-      setUser(response.data);
+      setUser(response.data.user);
+      setNewPets(response.data.newPets);
+      console.log(response.data.newPets);
       setShowAuth(false);
     }
   }

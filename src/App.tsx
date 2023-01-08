@@ -29,78 +29,86 @@ export const PetContext = createContext<{
   setPet: React.Dispatch<React.SetStateAction<Pet | null>>;
 }>({ pet: null, setPet: () => {} });
 
+export const NewPetsContext = createContext<{
+  newPets: Pet[];
+  setNewPets: React.Dispatch<React.SetStateAction<Pet[]>>;
+}>({ newPets: [], setNewPets: () => {} });
+
 function App() {
   const [user, setUser] = useState<User | null>(null);
   const [pet, setPet] = useState<Pet | null>(null);
+  const [newPets, setNewPets] = useState<Pet[]>([]);
   const [showDashboard, setShowDashboard] = useState<boolean>(false);
 
   return (
     <div className={`App ${showDashboard ? "margin-dashboard" : ""}`}>
       <UserContext.Provider value={{ user, setUser }}>
         <PetContext.Provider value={{ pet, setPet }}>
-          <NavBar
-            setShowDashboard={setShowDashboard}
-            showDashboard={showDashboard}
-          />
-          <Routes>
-            <Route path="/" element={<Home />} />
+          <NewPetsContext.Provider value={{ newPets, setNewPets }}>
+            <NavBar
+              setShowDashboard={setShowDashboard}
+              showDashboard={showDashboard}
+            />
+            <Routes>
+              <Route path="/" element={<Home />} />
 
-            <Route
-              path="/search/:mode"
-              element={<Search isChangeMode={false} />}
-            />
-            <Route path="/profile/:id" element={<PetProfile />} />
+              <Route
+                path="/search/:mode"
+                element={<Search isChangeMode={false} />}
+              />
+              <Route path="/profile/:id" element={<PetProfile />} />
 
-            <Route
-              path="/userProfile"
-              element={
-                <PrivateRoute mode="user">
-                  <UserProfile />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/myPets"
-              element={
-                <PrivateRoute mode="user">
-                  <MyPets />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path="/userProfile"
+                element={
+                  <PrivateRoute mode="user">
+                    <UserProfile />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/myPets"
+                element={
+                  <PrivateRoute mode="user">
+                    <MyPets />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path="/addPet/:id"
-              element={
-                <PrivateRoute mode="admin">
-                  <AddPet />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/userList"
-              element={
-                <PrivateRoute mode="admin">
-                  <UserList />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/newsfeed"
-              element={
-                <PrivateRoute mode="admin">
-                  <Newsfeed />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/userDetails/:id"
-              element={
-                <PrivateRoute mode="admin">
-                  <UserDetails />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
+              <Route
+                path="/addPet/:id"
+                element={
+                  <PrivateRoute mode="admin">
+                    <AddPet />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/userList"
+                element={
+                  <PrivateRoute mode="admin">
+                    <UserList />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/newsfeed"
+                element={
+                  <PrivateRoute mode="admin">
+                    <Newsfeed />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/userDetails/:id"
+                element={
+                  <PrivateRoute mode="admin">
+                    <UserDetails />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </NewPetsContext.Provider>
         </PetContext.Provider>
       </UserContext.Provider>
     </div>

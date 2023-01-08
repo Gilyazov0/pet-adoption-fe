@@ -1,10 +1,9 @@
 import { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../style/NavBar.css";
 import Auth from "../Auth/Auth";
 import SearchBarModal from "./SearchBarModal";
 import { UserContext } from "../../App";
-import UserApi from "../../lib/userApi";
 import Dashboard from "../Dashboard";
 
 const NavBar: React.FC<{
@@ -14,6 +13,8 @@ const NavBar: React.FC<{
   const { user, setUser } = useContext(UserContext);
   const [showAuth, setShowAuth] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user || !user.isAdmin) setShowDashboard(false);
@@ -54,8 +55,10 @@ const NavBar: React.FC<{
       <div
         className="label"
         onClick={() => {
-          user ? setUser(null) : setShowAuth(true);
-          UserApi.logout();
+          if (user) {
+            setUser(null);
+            navigate("/");
+          } else setShowAuth(true);
         }}
       >
         {user ? "Logout" : "Login/SignUp"}
