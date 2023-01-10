@@ -22,7 +22,7 @@ const ChatListItem: React.FC<{ chat: ChatMsg[]; row: number }> = ({
         <td>{`${chat[0].name}`}</td>
         <td>{time.toLocaleString()}</td>
 
-        <td>{showChat && <Chat />}</td>
+        <td>{showChat && <Chat chatId={chat[0].authorId} />}</td>
       </tr>
     </tbody>
   );

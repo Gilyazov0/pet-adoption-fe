@@ -41,6 +41,9 @@ const NavBar: React.FC<{
           <Link to={"/userProfile"} className={"no-underline"}>
             <div className="label">Profile</div>
           </Link>
+          <div className="nav-chat">
+            <Chat chatId={user.id} />
+          </div>
         </>
       )}
 
@@ -70,9 +73,6 @@ const NavBar: React.FC<{
 
       <Auth setShowAuth={setShowAuth} showAuth={showAuth} />
       <SearchBarModal showSearch={showSearch} setShowSearch={setShowSearch} />
-      <div className="nav-chat">
-        <Chat />
-      </div>
     </div>
   );
 };

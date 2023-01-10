@@ -24,4 +24,14 @@ export default class ChatApi extends AppApi {
       return this.handleError(err);
     }
   }
+
+  public static async delChat(chatId: number): ApiResponse<boolean> {
+    try {
+      const data = { chatId };
+      const res = await this.instance.post(`del/`, { data });
+      return { data: res.data };
+    } catch (err) {
+      return this.handleError(err);
+    }
+  }
 }

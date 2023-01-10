@@ -7,7 +7,7 @@ import ChatMessage from "./ChatMessage";
 import ChatMsg from "../../Types/ChatMsg";
 import ChatApi from "../../lib/chatApi";
 
-const Chat: React.FC = () => {
+const Chat: React.FC<{ chatId: number }> = ({ chatId }) => {
   const [msg, setMsg] = useState<string>("");
   const [ws, setWs] = useState<Ws | undefined>();
   const { user } = useContext(UserContext);
@@ -30,13 +30,30 @@ const Chat: React.FC = () => {
 
     const ws = new Ws(
       user.id,
-      user.id,
+      chatId,
       user.isAdmin,
       `${user.firstName} ${user.lastName}`,
       onMsg
     );
     setWs(ws);
-  }, [user, onMsg]);
+  }, [user, onMsg, chatId]);
+
+  function handleSend() {
+    const newMsg: ChatMsg = {
+      msg,
+      authorId: user!.id,
+      name: "you",
+      time: new Date().toString(),
+    };
+    ws?.send(msg);
+    onMsg(newMsg);
+    setMsg("");
+  }
+
+  async function handleDel() {
+    const res = await ChatApi.delChat(chatId);
+    if (res.data) setChat([]);
+  }
 
   const messages = chat?.map((msg, i) => <ChatMessage key={i} {...msg} />);
   return (
@@ -48,7 +65,13 @@ const Chat: React.FC = () => {
       {ws && (
         <div className="chat">
           <div className="chat-messages">{messages}</div>
+
           <div className="d-flex">
+            {user && user.isAdmin && (
+              <Button className="btn-custom me-2" onClick={handleDel}>
+                Del
+              </Button>
+            )}
             <Form.Control
               type="text"
               name={"password"}
@@ -57,20 +80,7 @@ const Chat: React.FC = () => {
                 setMsg(e.target.value);
               }}
             />
-            <Button
-              className="btn-custom ms-2"
-              onClick={() => {
-                const newMsg: ChatMsg = {
-                  msg,
-                  authorId: user!.id,
-                  name: "you",
-                  time: new Date().toString(),
-                };
-                ws.send(msg);
-                onMsg(newMsg);
-                setMsg("");
-              }}
-            >
+            <Button className="btn-custom ms-2" onClick={handleSend}>
               Send
             </Button>
           </div>

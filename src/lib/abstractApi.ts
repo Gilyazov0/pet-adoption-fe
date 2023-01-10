@@ -17,7 +17,6 @@ export default class AppApi {
 
   protected static handleError(err: unknown) {
     const mode = import.meta.env.MODE;
-    console.log(this.BASE_URL);
 
     if (mode === "development ") console.log(err);
     if (err instanceof AxiosError)
