@@ -15,6 +15,7 @@ import UserList from "./Components/UserList/UserList";
 import Newsfeed from "./Components/Newsfeed/Newsfeed";
 import UserDetails from "./Components/UserDetails";
 import PrivateRoutes from "./Components/PrivateRoutes";
+import ChatList from "./Components/ChatsList/ChatsList";
 
 export const UserContext = createContext<{
   user: User | null;
@@ -82,6 +83,7 @@ function App() {
                 <Route path="/addPet/:id" element={<AddPet />} />
                 <Route path="/userList" element={<UserList />} />
                 <Route path="/newsfeed" element={<Newsfeed />} />
+                <Route path="/chatsList" element={<ChatList />} />
                 <Route path="/userDetails/:id" element={<UserDetails />} />
               </Route>
             </Routes>

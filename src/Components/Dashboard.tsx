@@ -18,6 +18,9 @@ const Dashboard: React.FC = () => {
         <Link to={"/newsfeed"} className={"no-underline"}>
           <div className="label mt-3">Newsfeed</div>
         </Link>
+        <Link to={"/chatsList"} className={"no-underline"}>
+          <div className="label mt-3">Chats list</div>
+        </Link>
       </div>
     </>
   );

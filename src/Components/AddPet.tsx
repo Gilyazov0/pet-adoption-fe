@@ -47,6 +47,7 @@ const AddPet: React.FC = () => {
   const [type, setType] = useState<PetType>(initData.type);
 
   useEffect(() => {
+    // eslint-disable-next-line eqeqeq
     const initData = id == pet?.id ? pet! : defaultInput;
     setFormData(initData);
   }, [id, pet]);

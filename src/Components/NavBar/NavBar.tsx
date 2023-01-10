@@ -5,6 +5,7 @@ import Auth from "./Auth/Auth";
 import SearchBarModal from "./SearchBarModal";
 import { UserContext, NewPetsContext } from "../../App";
 import Dashboard from "../Dashboard";
+import Chat from "../Chat/Chat";
 
 const NavBar: React.FC<{
   showDashboard: boolean;
@@ -69,6 +70,9 @@ const NavBar: React.FC<{
 
       <Auth setShowAuth={setShowAuth} showAuth={showAuth} />
       <SearchBarModal showSearch={showSearch} setShowSearch={setShowSearch} />
+      <div className="nav-chat">
+        <Chat />
+      </div>
     </div>
   );
 };

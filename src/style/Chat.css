@@ -1,0 +1,11 @@
+.chat {
+}
+
+.chat-messages {
+  height: 10rem;
+  background-color: white;
+  margin-bottom: 1rem;
+  border: solid 2px #523634;
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+}
