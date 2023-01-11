@@ -8,4 +8,23 @@
   border: solid 2px #523634;
   border-radius: 0.375rem;
   padding: 0.25rem;
+  overflow: auto;
+  word-wrap: break-word;
+}
+
+.mw-6 {
+  min-width: 6rem;
+}
+
+.mw-12 {
+  min-width: 12rem;
+}
+
+td,
+th {
+  text-align: center;
+}
+
+.chat-input {
+  autocomplete: "off";
 }

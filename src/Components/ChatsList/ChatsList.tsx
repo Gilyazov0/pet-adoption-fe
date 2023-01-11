@@ -25,17 +25,27 @@ const ChatList: React.FC = () => {
   const rows = Object.values(chats).map((chat, i) => (
     <ChatListItem key={chat[0].authorId} row={i + 1} chat={chat} />
   ));
-  console.log(chats);
   return (
     <>
       <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Chat id </th>
-            <th scope="col">User name</th>
-            <th scope="col">Last message date</th>
-            <th scope="col">Chat </th>
+            <th scope="col" className="mw-6">
+              Chat id
+            </th>
+            <th scope="col" className="mw-12">
+              User name
+            </th>
+            <th scope="col" className="mw-12">
+              First message date
+            </th>
+            <th scope="col" className="mw-12">
+              Last message date
+            </th>
+            <th scope="col" className="mw-6">
+              Chat
+            </th>
           </tr>
         </thead>
         {rows}

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useCallback } from "react";
+import { useState, useContext, useEffect, useCallback, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import Ws from "../../lib/websocket";
 import { UserContext } from "../../App";
@@ -12,18 +12,26 @@ const Chat: React.FC<{ chatId: number }> = ({ chatId }) => {
   const [ws, setWs] = useState<Ws | undefined>();
   const { user } = useContext(UserContext);
   const [chat, setChat] = useState<ChatMsg[]>();
+  const msgWindow = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (msgWindow.current)
+      msgWindow.current.scrollTop = msgWindow.current.scrollHeight;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [msgWindow.current, msg]);
 
   const onMsg = useCallback((newMsg: ChatMsg) => {
     setChat((prev) => (prev ? [...prev, newMsg] : [newMsg]));
   }, []);
+
   useEffect(() => {
     async function getChatData(id: number) {
       const response = await ChatApi.getChatById(id);
       if (response.data) setChat(response.data);
     }
 
-    if (user) getChatData(user.id);
-  }, [user]);
+    if (user) getChatData(chatId);
+  }, [user, chatId]);
 
   useEffect(() => {
     if (!user || !user.id) return;
@@ -61,12 +69,15 @@ const Chat: React.FC<{ chatId: number }> = ({ chatId }) => {
       onClick={(e) => {
         e.stopPropagation();
       }}
+      className="w-100"
     >
       {ws && (
-        <div className="chat">
-          <div className="chat-messages">{messages}</div>
+        <div className="chat w-100">
+          <div className="chat-messages w-100" ref={msgWindow}>
+            {messages}
+          </div>
 
-          <div className="d-flex">
+          <div className="d-flex w-100">
             {user && user.isAdmin && (
               <Button className="btn-custom me-2" onClick={handleDel}>
                 Del
@@ -74,7 +85,6 @@ const Chat: React.FC<{ chatId: number }> = ({ chatId }) => {
             )}
             <Form.Control
               type="text"
-              name={"password"}
               value={msg}
               onChange={(e) => {
                 setMsg(e.target.value);

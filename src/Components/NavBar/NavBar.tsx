@@ -6,6 +6,7 @@ import SearchBarModal from "./SearchBarModal";
 import { UserContext, NewPetsContext } from "../../App";
 import Dashboard from "../Dashboard";
 import Chat from "../Chat/Chat";
+import chatImgUrl from "../../assets/chat.svg";
 
 const NavBar: React.FC<{
   showDashboard: boolean;
@@ -14,6 +15,7 @@ const NavBar: React.FC<{
   const { user, setUser } = useContext(UserContext);
   const [showAuth, setShowAuth] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [showChat, setShowChat] = useState<boolean>(false);
   const { setNewAvailablePets, setNewPets } = useContext(NewPetsContext);
 
   const navigate = useNavigate();
@@ -41,8 +43,19 @@ const NavBar: React.FC<{
           <Link to={"/userProfile"} className={"no-underline"}>
             <div className="label">Profile</div>
           </Link>
+
           <div className="nav-chat">
-            <Chat chatId={user.id} />
+            {showChat && <Chat chatId={user.id} />}
+            <div>
+              <img
+                className={`${showChat ? "" : "active"}`}
+                src={chatImgUrl}
+                alt="chat"
+                onClick={(e) => {
+                  setShowChat((prev) => !prev);
+                }}
+              />
+            </div>
           </div>
         </>
       )}

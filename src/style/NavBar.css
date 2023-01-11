@@ -37,4 +37,13 @@
   right: 0;
   margin: 0 1rem 1rem 0;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 300px;
+}
+
+.active {
+  filter: invert(33%) sepia(64%) saturate(1115%) hue-rotate(335deg)
+    brightness(87%) contrast(91%);
 }

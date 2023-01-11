@@ -8,7 +8,8 @@ const ChatListItem: React.FC<{ chat: ChatMsg[]; row: number }> = ({
 }) => {
   const [showChat, setShowChat] = useState<boolean>(false);
 
-  const time = new Date(chat[chat.length - 1].time);
+  const lastMsgTime = new Date(chat[chat.length - 1].time);
+  const firstMsgTime = new Date(chat[0].time);
   return (
     <tbody>
       <tr
@@ -20,9 +21,12 @@ const ChatListItem: React.FC<{ chat: ChatMsg[]; row: number }> = ({
         <th scope="row"> {row} </th>
         <td>{chat[0].authorId}</td>
         <td>{`${chat[0].name}`}</td>
-        <td>{time.toLocaleString()}</td>
+        <td>{firstMsgTime.toLocaleString()}</td>
+        <td>{lastMsgTime.toLocaleString()}</td>
 
-        <td>{showChat && <Chat chatId={chat[0].authorId} />}</td>
+        <td className="w-100">
+          {showChat && <Chat chatId={chat[0].authorId} />}
+        </td>
       </tr>
     </tbody>
   );
