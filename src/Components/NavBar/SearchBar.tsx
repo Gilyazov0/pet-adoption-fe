@@ -94,36 +94,44 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
               <Col xs={3} className="pe-0">
                 Height from:
               </Col>
-              <Col xs={3}>
+              <Col xs={4}>
+                <Form.Control
+                  className="pe-1"
+                  type="number"
+                  name="minHeight"
+                  onChange={(e) => handleInput(e)}
+                />
+              </Col>
+              <Col xs={1} className="pe-0">
+                to:
+              </Col>
+              <Col xs={4} className="pe-1">
                 <Form.Control
                   type="number"
                   name="maxHeight"
                   onChange={(e) => handleInput(e)}
                 />
               </Col>
-              <Col xs={1}>to:</Col>
-              <Col xs={3}>
+            </Row>
+            <Row className="align-items-center mb-2">
+              <Col xs={3} className="pe-0">
+                Width from:
+              </Col>
+              <Col xs={4}>
                 <Form.Control
+                  className="pe-1"
                   type="number"
-                  name="minHeight"
+                  name="minWeight"
                   onChange={(e) => handleInput(e)}
                 />
               </Col>
-            </Row>
-            <Row className="align-items-center mb-2">
-              <Col xs={3}> Width from:</Col>
-              <Col xs={3}>
+              <Col xs={1} className="pe-0">
+                to:
+              </Col>
+              <Col xs={4} className="pe-1">
                 <Form.Control
                   type="number"
                   name="maxWeight"
-                  onChange={(e) => handleInput(e)}
-                />
-              </Col>
-              <Col xs={1}>to:</Col>
-              <Col xs={3}>
-                <Form.Control
-                  type="number"
-                  name="minWeight"
                   onChange={(e) => handleInput(e)}
                 />
               </Col>
