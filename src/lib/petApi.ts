@@ -15,16 +15,8 @@ export default class PetApi extends AppApi {
     }
   }
 
-  public static async search(
-    name: string,
-    type: string,
-    weight: string,
-    height: string,
-    status: string
-  ): ApiResponse<Pet[]> {
+  public static async search(params: Object): ApiResponse<Pet[]> {
     try {
-      const params = { name, type, weight, height, status };
-
       const res = await this.instance.get(`search/`, { params });
       return { data: res.data };
     } catch (err) {

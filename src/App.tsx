@@ -68,10 +68,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
 
-              <Route
-                path="/search/:mode"
-                element={<Search isChangeMode={false} />}
-              />
+              <Route path="/search/:mode" element={<Search />} />
               <Route path="/profile/:id" element={<PetProfile />} />
 
               <Route element={<PrivateRoutes mode="user" />}>

@@ -1,5 +1,4 @@
-import { Accordion, Button, Form } from "react-bootstrap";
-import "../../style/SearchBar.css";
+import { Accordion, Button, Col, Form, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
@@ -12,8 +11,10 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
   const [searchParams, setSearchParams] = useState({
     name: "",
     type: "",
-    weight: "",
-    height: "",
+    maxWeight: "",
+    minWeight: "",
+    maxHeight: "",
+    minHeight: "",
     status: "",
   });
 
@@ -27,8 +28,14 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
     let query = "?";
     if (searchParams.type) query += `type=${searchParams.type}&&`;
     if (searchParams.status) query += `status=${searchParams.status}&&`;
-    if (searchParams.height) query += `height=${searchParams.height}&&`;
-    if (searchParams.weight) query += `weight=${searchParams.weight}&&`;
+    if (searchParams.maxHeight)
+      query += `maxHeight=${searchParams.maxHeight}&&`;
+    if (searchParams.minHeight)
+      query += `minHeight=${searchParams.minHeight}&&`;
+    if (searchParams.maxWeight)
+      query += `maxWeight=${searchParams.maxWeight}&&`;
+    if (searchParams.minWeight)
+      query += `minWeight=${searchParams.minWeight}&&`;
     if (searchParams.name) query += `name=${searchParams.name}&&`;
 
     return query.length > 1 ? query.slice(0, query.length - 2) : "";
@@ -83,26 +90,44 @@ const SearchBar: React.FC<{ setShowSearch: Function }> = ({
                 onChange={(e) => handleInput(e)}
               />
             </div>
-            <div className="d-flex  mb-2">
-              <span className="align-self-center me-3 search-label">
-                Height:
-              </span>
-              <Form.Control
-                type="number"
-                name="height"
-                onChange={(e) => handleInput(e)}
-              />
-            </div>
-            <div className="d-flex mb-2">
-              <span className="align-self-center me-3 search-label">
-                Width:
-              </span>
-              <Form.Control
-                type="number"
-                name="weight"
-                onChange={(e) => handleInput(e)}
-              />
-            </div>
+            <Row className="align-items-center mb-2">
+              <Col xs={3} className="pe-0">
+                Height from:
+              </Col>
+              <Col xs={3}>
+                <Form.Control
+                  type="number"
+                  name="maxHeight"
+                  onChange={(e) => handleInput(e)}
+                />
+              </Col>
+              <Col xs={1}>to:</Col>
+              <Col xs={3}>
+                <Form.Control
+                  type="number"
+                  name="minHeight"
+                  onChange={(e) => handleInput(e)}
+                />
+              </Col>
+            </Row>
+            <Row className="align-items-center mb-2">
+              <Col xs={3}> Width from:</Col>
+              <Col xs={3}>
+                <Form.Control
+                  type="number"
+                  name="maxWeight"
+                  onChange={(e) => handleInput(e)}
+                />
+              </Col>
+              <Col xs={1}>to:</Col>
+              <Col xs={3}>
+                <Form.Control
+                  type="number"
+                  name="minWeight"
+                  onChange={(e) => handleInput(e)}
+                />
+              </Col>
+            </Row>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

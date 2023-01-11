@@ -7,19 +7,17 @@ import Loading from "./CommonComponents/Loading";
 import SearchBar from "./NavBar/SearchBar";
 import "../style/SearchResults.css";
 
-const Search: React.FC<{ isChangeMode: boolean }> = ({ isChangeMode }) => {
+const Search: React.FC = () => {
   const [pets, setPets] = useState<Pet[] | undefined>(undefined);
   let [searchParams] = useSearchParams();
 
-  const { name, type, weight, height, status } = Object.fromEntries([
-    ...searchParams,
-  ]);
+  const params = Object.fromEntries([...searchParams]);
 
   const { mode } = useParams();
 
   useEffect(() => {
     async function getSearchResults() {
-      const res = await PetApi.search(name, type, weight, height, status);
+      const res = await PetApi.search(params);
       if (res.data) setPets(res.data);
     }
 
