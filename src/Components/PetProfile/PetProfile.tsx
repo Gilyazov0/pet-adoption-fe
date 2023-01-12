@@ -2,25 +2,28 @@ import "../../style/PetProfile.css";
 import { Card, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import PetApi from "../../lib/petApi";
-import { useContext, useEffect } from "react";
-import { PetContext, UserContext } from "../../App";
+import { useEffect } from "react";
 import SavePetButton from "./SavePetButton";
 import AdoptPetButton from "./AdoptPetButton";
 import FosterPetButton from "./FosterPetButton";
 import Loading from "../CommonComponents/Loading";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { petSlice } from "../../store/reducers/PetSlice";
 
 const PetProfile: React.FC = () => {
   const { id } = useParams();
-  const { user } = useContext(UserContext);
-  const { pet, setPet } = useContext(PetContext);
+  const { user } = useAppSelector((state) => state.user);
+  const { pet } = useAppSelector((state) => state.pet);
+  const dispatch = useAppDispatch();
+  const { setPet } = petSlice.actions;
 
   useEffect(() => {
     async function getProfilePet() {
       const res = await PetApi.getPetById(id!);
-      if (res.data) setPet(res.data);
+      if (res.data) dispatch(setPet(res.data));
     }
     if (!pet || pet.id !== id) getProfilePet();
-  }, [id, pet, setPet]);
+  }, [dispatch, id, pet, setPet]);
 
   const colorClass =
     pet?.adoptionStatus === "Adopted"

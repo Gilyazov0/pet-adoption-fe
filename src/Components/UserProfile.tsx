@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
-import { UserContext } from "../App";
 import Message, { MessageType } from "./CommonComponents/Message";
 import "../style/UserProfile.css";
 import UserApi from "../lib/userApi";
 import PasswordValidation from "../lib/passwordValidation";
+import { useAppSelector, useAppDispatch } from "../hooks/redux";
+import { userSlice } from "../store/reducers/UserSlice";
 
 interface FormData {
   email: string;
@@ -16,7 +17,9 @@ interface FormData {
 }
 
 const UserProfile: React.FC = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const { setUser } = userSlice.actions;
   const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
 
   const [formData, setFormData] = useState<FormData>({
@@ -56,7 +59,7 @@ const UserProfile: React.FC = () => {
       setMsg({ text: response.error, type: "error" });
       return;
     }
-    setUser(response.data!);
+    dispatch(setUser(response.data!));
     setMsg({ text: "Data updated", type: "success" });
   }
 

@@ -1,16 +1,17 @@
-import { useState, useContext, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import Ws from "../../lib/websocket";
-import { UserContext } from "../../App";
 import "../../style/Chat.css";
 import ChatMessage from "./ChatMessage";
 import ChatMsg from "../../Types/ChatMsg";
 import ChatApi from "../../lib/chatApi";
+import { useAppSelector } from "../../hooks/redux";
 
 const Chat: React.FC<{ chatId: number }> = ({ chatId }) => {
   const [msg, setMsg] = useState<string>("");
   const [ws, setWs] = useState<Ws | undefined>();
-  const { user } = useContext(UserContext);
+
+  const { user } = useAppSelector((state) => state.user);
   const [chat, setChat] = useState<ChatMsg[]>();
   const msgWindow = useRef<HTMLDivElement | null>(null);
 

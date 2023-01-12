@@ -1,16 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../style/Home.css";
-import { useContext, useEffect, useState } from "react";
-import { UserContext, NewPetsContext } from "../../App";
+import { useEffect, useState } from "react";
 import NewPets from "./NewPets";
 import NewPetsMsg from "./NewPetsMsg";
 import NewAvailablePetsMsg from "./NewAvailablePetsMsg";
+import { useAppSelector } from "../../hooks/redux";
 
 const Home: React.FC = () => {
-  const { user } = useContext(UserContext);
+  const { user } = useAppSelector((state) => state.user);
   const [showNewPets, setShowNewPets] = useState<boolean>(false);
-  const { newPets, newAvailablePets } = useContext(NewPetsContext);
-
+  const { newPets, newAvailablePets } = useAppSelector((state) => state.pet);
   useEffect(() => {
     if (newPets.length === 0 && newAvailablePets.length === 0)
       setShowNewPets(false);

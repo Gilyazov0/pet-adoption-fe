@@ -1,8 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
-import { UserContext, NewPetsContext } from "../../../App";
 import UserApi from "../../../lib/userApi";
 import Message, { MessageType } from "../../CommonComponents/Message";
+import { userSlice } from "../../../store/reducers/UserSlice";
+import { useAppDispatch } from "../../../hooks/redux";
+import { petSlice } from "../../../store/reducers/PetSlice";
 
 interface Props {
   setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,8 +17,9 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
 
   const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
 
-  const { setUser } = useContext(UserContext);
-  const { setNewPets, setNewAvailablePets } = useContext(NewPetsContext);
+  const dispatch = useAppDispatch();
+  const { setUser } = userSlice.actions;
+  const { setNewPets, setNewAvailablePets } = petSlice.actions;
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
@@ -30,9 +33,9 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
       setMsg({ text: response.error, type: "error" });
     }
     if (response.data) {
-      setUser(response.data.user);
-      setNewPets(response.data.newPets);
-      setNewAvailablePets(response.data.newAvailablePets);
+      dispatch(setUser(response.data.user));
+      dispatch(setNewPets(response.data.newPets));
+      dispatch(setNewAvailablePets(response.data.newAvailablePets));
       setShowAuth(false);
     }
   }

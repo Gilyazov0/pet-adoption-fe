@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../App";
+import { useState } from "react";
 import User from "../Types/User";
 import PetCardsList from "./PetsList/PetsList";
 import SelectStyled from "./CommonComponents/SelectStyled";
+import { useAppSelector } from "../hooks/redux";
 
 type ViewType = "myPets" | "savedPets";
 
 const MyPets: React.FC = () => {
-  const user = useContext(UserContext).user as User;
+  const user = useAppSelector((state) => state.user.user) as User;
 
   const [view, setView] = useState<ViewType>("myPets");
 

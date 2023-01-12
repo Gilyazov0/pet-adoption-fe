@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Form,
   FloatingLabel,
@@ -15,8 +15,8 @@ import { MessageType } from "./CommonComponents/Message";
 import SelectStyled from "./CommonComponents/SelectStyled";
 import { AdoptStatus } from "../Types/AdoptStatus";
 import { useParams } from "react-router-dom";
-import { PetContext } from "../App";
 import { PetType } from "../Types/PetsTypes";
+import { useAppSelector } from "../hooks/redux";
 
 const defaultInput: Pet = {
   type: "Cat",
@@ -33,7 +33,7 @@ const defaultInput: Pet = {
 
 const AddPet: React.FC = () => {
   const { id } = useParams();
-  const { pet } = useContext(PetContext);
+  const { pet } = useAppSelector((state) => state.pet);
   // eslint-disable-next-line eqeqeq
   const initData = id == pet?.id ? pet! : defaultInput;
   const [formData, setFormData] = useState<Pet>(initData);

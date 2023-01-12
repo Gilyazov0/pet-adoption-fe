@@ -1,9 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
-import { UserContext } from "../../../App";
 import PasswordValidation from "../../../lib/passwordValidation";
 import UserApi from "../../../lib/userApi";
+import { userSlice } from "../../../store/reducers/UserSlice";
 import Message, { MessageType } from "../../CommonComponents/Message";
+import { useAppDispatch } from "../../../hooks/redux";
 
 interface Props {
   setShowAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,7 +22,8 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
 
   const [msg, setMsg] = useState<MessageType>({ text: "", type: "error" });
 
-  const { setUser } = useContext(UserContext);
+  const { setUser } = userSlice.actions;
+  const dispatch = useAppDispatch();
 
   function handleInput(
     e: React.ChangeEvent & { target: { name: string; value: string } }
@@ -53,7 +55,7 @@ const SignUp: React.FC<Props> = ({ setShowAuth }) => {
       return;
     }
 
-    setUser(response.data!);
+    dispatch(setUser(response.data!));
     setShowAuth(false);
   }
 
