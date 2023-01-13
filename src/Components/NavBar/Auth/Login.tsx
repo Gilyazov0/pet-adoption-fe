@@ -29,6 +29,8 @@ const Login: React.FC<Props> = ({ setShowAuth }) => {
 
   async function handleSubmit() {
     const response = await UserApi.login(formData.email, formData.password);
+    console.log("response:", response);
+
     if (response.error) {
       setMsg({ text: response.error, type: "error" });
     }

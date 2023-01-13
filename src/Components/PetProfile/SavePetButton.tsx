@@ -21,7 +21,7 @@ const SavePetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
           className="m-3 btn-custom"
           style={{ width: "5rem" }}
           onClick={async () => {
-            const res = await UserApi.changeSave(user.id, pet.id!);
+            const res = await UserApi.changeSave(pet.id!);
             if (res.data) dispatch(setUser(res.data));
             else console.log(res.error);
           }}

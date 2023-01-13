@@ -17,6 +17,9 @@ export default class AppApi {
 
   protected static handleError(err: unknown) {
     const mode = import.meta.env.MODE;
+    console.log("Handling an error");
+    console.log("mode is ", mode);
+    console.log(err);
 
     if (mode === "development ") console.log(err);
     if (err instanceof AxiosError)
@@ -24,5 +27,20 @@ export default class AppApi {
         error: err.response ? err.response.data.message : err.message,
       };
     else return { error: "unknown error" };
+  }
+
+  protected static catchError(target: any, propertyName: any, descriptor: any) {
+    const method = descriptor.value;
+
+    descriptor.value = async function (...args: any) {
+      try {
+        console.log("Decorator: executing function");
+
+        return await method.apply(target, args);
+      } catch (error) {
+        console.log("Decorator: error cached");
+        return this.handleError(error);
+      }
+    };
   }
 }

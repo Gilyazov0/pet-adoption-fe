@@ -28,7 +28,7 @@ const AdoptPetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
         <Button
           className="m-3 btn-custom"
           onClick={async () => {
-            const res = await UserApi.changeAdopt(user.id, pet.id!);
+            const res = await UserApi.changeAdopt(pet.id!);
             if (res.data) dispatch(setUser(res.data));
             else console.log(res.error);
           }}
