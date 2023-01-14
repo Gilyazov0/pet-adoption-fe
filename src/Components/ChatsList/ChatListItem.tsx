@@ -2,7 +2,10 @@ import ChatMsg from "../../Types/ChatMsg";
 import React, { useState } from "react";
 import Chat from "../Chat/Chat";
 
-const Test: React.FC<{ chat: ChatMsg[]; row: number }> = ({ chat, row }) => {
+const ChatListItem: React.FC<{ chat: ChatMsg[]; row: number }> = ({
+  chat,
+  row,
+}) => {
   const [showChat, setShowChat] = useState<boolean>(false);
 
   const lastMsgTime = new Date(chat[chat.length - 1].time);
@@ -29,4 +32,4 @@ const Test: React.FC<{ chat: ChatMsg[]; row: number }> = ({ chat, row }) => {
   );
 };
 
-export default Test;
+export default ChatListItem;

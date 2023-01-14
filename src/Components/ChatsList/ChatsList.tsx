@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ChatMsg from "../../Types/ChatMsg";
 import ChatApi from "../../lib/chatApi";
 import Message, { MessageType } from "../CommonComponents/Message";
-import Test from "./test";
+import ChatListItem from "./ChatListItem";
 
 const ChatList: React.FC = () => {
   const [chats, setChats] = useState<{ [key: number]: ChatMsg[] }>({});
@@ -22,7 +22,7 @@ const ChatList: React.FC = () => {
   }, []);
 
   const rows = Object.values(chats).map((chat, i) => (
-    <Test key={chat[0].authorId} row={i + 1} chat={chat} />
+    <ChatListItem key={chat[0].authorId} row={i + 1} chat={chat} />
   ));
   return (
     <>
