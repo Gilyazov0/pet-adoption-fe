@@ -1,4 +1,4 @@
-type Comment = {
+type IssueComment = {
   id: string;
   authorId: string;
   text: string;
@@ -6,4 +6,4 @@ type Comment = {
   author: { id: string; firstName: string; lastName: string };
 };
 
-export default Comment;
+export default IssueComment;
