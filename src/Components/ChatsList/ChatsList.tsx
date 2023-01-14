@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import ChatMsg from "../../Types/ChatMsg";
 import ChatApi from "../../lib/chatApi";
 import Message, { MessageType } from "../CommonComponents/Message";
-import ChatListItem from "./ChatlistItem";
-import Chat from "../Chat/Chat";
+import ChatListItem from "./ChatListItem";
 
 const ChatList: React.FC = () => {
   const [chats, setChats] = useState<{ [key: number]: ChatMsg[] }>({});

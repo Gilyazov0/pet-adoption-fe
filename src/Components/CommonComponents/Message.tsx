@@ -12,10 +12,10 @@ const Message: React.FC<{
     if (!msg.text) return;
     const timer = setTimeout(() => setMsg({ ...msg, text: "" }), 10000);
     return () => clearTimeout(timer);
-  }, [msg]);
+  }, [msg, setMsg]);
   return (
     <span
-      className={`${msg.type === "error" ? "text-danger" : "text-success"}`}
+      className={`${msg.type === "error" ? "text-danger" : "text-success"}  `}
     >
       {msg.text}
     </span>

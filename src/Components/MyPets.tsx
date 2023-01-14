@@ -24,7 +24,7 @@ const MyPets: React.FC = () => {
           <SelectStyled options={options} onChange={setView} />
         </div>
       </div>
-      {pets.length > 0 ? (
+      {pets!.length > 0 ? (
         <PetCardsList pets={pets} isChangeMode={false} />
       ) : (
         <div className="w-100 text-center mt-5">

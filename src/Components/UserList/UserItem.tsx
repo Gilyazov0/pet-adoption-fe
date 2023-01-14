@@ -1,4 +1,5 @@
 import User from "../../Types/User";
+
 const UserItem: React.FC<{ user: User; row: number; onClick: Function }> = ({
   user,
   row,

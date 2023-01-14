@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import Pet from "../Types/Pet";
 import Loading from "./CommonComponents/Loading";
-import SearchBar from "./NavBar/SearchBar";
+import SearchBar from "./CommonComponents/SearchBar";
 import "../style/SearchResults.css";
 
 const Search: React.FC = () => {

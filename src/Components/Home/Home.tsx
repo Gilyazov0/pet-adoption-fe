@@ -10,6 +10,7 @@ const Home: React.FC = () => {
   const { user } = useAppSelector((state) => state.user);
   const [showNewPets, setShowNewPets] = useState<boolean>(false);
   const { newPets, newAvailablePets } = useAppSelector((state) => state.pet);
+
   useEffect(() => {
     if (newPets.length === 0 && newAvailablePets.length === 0)
       setShowNewPets(false);

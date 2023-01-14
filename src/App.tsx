@@ -14,6 +14,8 @@ import Newsfeed from "./Components/Newsfeed/Newsfeed";
 import UserDetails from "./Components/UserDetails";
 import PrivateRoutes from "./Components/PrivateRoutes";
 import ChatList from "./Components/ChatsList/ChatsList";
+import ContactUs from "./Components/ContactUs";
+import Issues from "./Components/Issues/Issues";
 
 function App() {
   const [showDashboard, setShowDashboard] = useState<boolean>(false);
@@ -33,6 +35,7 @@ function App() {
         <Route element={<PrivateRoutes mode="user" />}>
           <Route path="/userProfile" element={<UserProfile />} />
           <Route path="/myPets" element={<MyPets />} />
+          <Route path="/contactUs" element={<ContactUs />} />
         </Route>
 
         <Route element={<PrivateRoutes mode="admin" />}>
@@ -41,6 +44,7 @@ function App() {
           <Route path="/newsfeed" element={<Newsfeed />} />
           <Route path="/chatsList" element={<ChatList />} />
           <Route path="/userDetails/:id" element={<UserDetails />} />
+          <Route path="/issues/" element={<Issues />} />
         </Route>
       </Routes>
     </div>

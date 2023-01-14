@@ -6,6 +6,7 @@ import SearchBarModal from "./SearchBarModal";
 import Dashboard from "../Dashboard";
 import Chat from "../Chat/Chat";
 import chatImgUrl from "../../assets/chat.svg";
+import mailImgUrl from "../../assets/mail.svg";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/UserSlice";
 import { petSlice } from "../../store/reducers/PetSlice";
@@ -52,13 +53,16 @@ const NavBar: React.FC<{
             {showChat && <Chat chatId={user.id} />}
             <div>
               <img
-                className={`${showChat ? "" : "active"}`}
+                className={`${showChat ? "" : "active"} pointer`}
                 src={chatImgUrl}
                 alt="chat"
                 onClick={(e) => {
                   setShowChat((prev) => !prev);
                 }}
               />
+              <Link to={"/contactUs"}>
+                <img className={"active ms-2"} src={mailImgUrl} alt="mail" />
+              </Link>
             </div>
           </div>
         </>

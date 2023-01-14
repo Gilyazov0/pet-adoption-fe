@@ -1,5 +1,4 @@
 import Pet from "../../Types/Pet";
-
 import PetCardsList from "../PetsList/PetsList";
 import "../../style/NewPets.css";
 import { useAppSelector } from "../../hooks/redux";

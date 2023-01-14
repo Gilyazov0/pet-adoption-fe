@@ -21,7 +21,6 @@ const AdoptPetButton: React.FC<{ pet: PetProps }> = ({ pet }) => {
   };
 
   const label = getLabel();
-
   return (
     <>
       {user && label && (

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import UserApi from "../lib/userApi";
 import PageNotFound from "./CommonComponents/PageNotFound";
 import Loading from "./CommonComponents/Loading";
+import UserData from "./CommonComponents/UserData";
 
 const UserDetails: React.FC = () => {
   const [user, setUser] = useState<User | undefined | null>(undefined);
@@ -27,16 +28,11 @@ const UserDetails: React.FC = () => {
       {user === undefined && <Loading />}
       {user === null && <PageNotFound />}
       {user && (
-        <div className="d-flex flex-row ">
-          <div className="user-details m-3">
-            <div className="fs-5">{`First name: ${user.firstName}`}</div>
-            <div className="fs-5">{`Last name: ${user.lastName}`}</div>
-            <div className="fs-5">{`Email: ${user.email}`}</div>
-            <div className="fs-5">{`Phone: ${user.phone}`}</div>
-            <div className="fs-5">
-              {user.bio ? `Biography: ${user.bio}` : ""}
-            </div>
+        <div className="d-flex flex-row">
+          <div className="m-3">
+            <UserData user={user} />
           </div>
+
           <div className="user-details-pets">
             <PetCardsList pets={user.pets} isChangeMode={false} />
           </div>

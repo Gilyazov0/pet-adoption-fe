@@ -20,9 +20,7 @@ export default class EventApi extends AppApi {
 
   @AppApi.catchError
   public static async getNewPets(): ApiResponse<Pet[]> {
-    const res = await this.instance.get(`newPets/`, {
-      withCredentials: true,
-    });
+    const res = await this.instance.get(`newPets/`);
     return { data: res.data };
   }
 }
