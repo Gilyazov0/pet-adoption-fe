@@ -2,16 +2,14 @@ import axios, { AxiosError, AxiosInstance } from "axios";
 
 export default class AppApi {
   protected static tokenKey: string = "pet-app-token";
-  protected static BASE_URL: string = `http${
-    import.meta.env.VITE_API_BASE_URL
-  }`;
+  protected static BASE_URL: string = `${import.meta.env.VITE_API_BASE_URL}`;
   protected static instance: AxiosInstance;
 
   protected static getAxiosInstance() {
     return axios.create({
-      withCredentials: true,
       baseURL: this.BASE_URL,
       timeout: 5000,
+      withCredentials: true,
     });
   }
 

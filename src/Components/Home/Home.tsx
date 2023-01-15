@@ -5,6 +5,7 @@ import NewPets from "./NewPets";
 import NewPetsMsg from "./NewPetsMsg";
 import NewAvailablePetsMsg from "./NewAvailablePetsMsg";
 import { useAppSelector } from "../../hooks/redux";
+import homeImgUrl from "../../assets/home.png";
 
 const Home: React.FC = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -19,7 +20,7 @@ const Home: React.FC = () => {
   return (
     <div className="App">
       <div className="home">
-        <div className="img">
+        <div className="img" style={{ backgroundImage: `url(${homeImgUrl})` }}>
           {showNewPets ? (
             <NewPets pets={newPets.concat(newAvailablePets)} />
           ) : (

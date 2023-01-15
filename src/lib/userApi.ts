@@ -48,7 +48,7 @@ export default class UserApi extends AppApi {
       user: User;
       newPets: Pet[];
       newAvailablePets: Pet[];
-    }>(`login`, data);
+    }>(`login`, data, { withCredentials: true });
 
     return {
       data: {
