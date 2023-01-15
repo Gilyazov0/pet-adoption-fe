@@ -2,7 +2,9 @@ import axios, { AxiosError, AxiosInstance } from "axios";
 
 export default class AppApi {
   protected static tokenKey: string = "pet-app-token";
-  protected static BASE_URL: string = `${import.meta.env.VITE_API_BASE_URL}`;
+  protected static BASE_URL: string = `${
+    import.meta.env.MODE === "development" ? "http" : "https"
+  }${import.meta.env.VITE_API_BASE_URL}`;
   protected static instance: AxiosInstance;
 
   protected static getAxiosInstance() {
@@ -16,7 +18,7 @@ export default class AppApi {
   protected static handleError(err: unknown) {
     const mode = import.meta.env.MODE;
 
-    if (mode === "development ") console.log(err);
+    if (mode === "development") console.log(err);
     if (err instanceof AxiosError)
       return {
         error: err.response ? err.response.data.message : err.message,

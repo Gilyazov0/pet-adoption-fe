@@ -19,7 +19,7 @@ export default class Ws {
     this.chatId = chatId.toString();
     this.onMessage = onMessage;
     this.ws = new WebSocket(
-      `ws${
+      `wss${
         import.meta.env.VITE_API_BASE_URL
       }websocket?userId=${userId}&isAdmin=${isAdmin}&chatId=${chatId}`
     );
@@ -40,18 +40,3 @@ export default class Ws {
     this.ws.send(JSON.stringify(msgObj));
   }
 }
-
-// export function webSocketTest() {
-//   // Let us open a web socket
-//   var ws = new WebSocket("ws://localhost:8080/websockets?pam=1");
-
-//   ws.onopen = function () {
-//     // Web Socket is connected, send data using send()
-//     ws.send("Message to send");
-//   };
-
-//   ws.onclose = function () {
-//     // websocket is closed.
-//     alert("Connection is closed...");
-//   };
-// }
